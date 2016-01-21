@@ -92,6 +92,10 @@ class WhatCounts {
 		return $this;
 	}
 
+	/**
+	 * @return bool
+	 * @throws Exception
+	 */
 	public function checkStatus()
 	{
 		if ($this->realm === NULL)
