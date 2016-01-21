@@ -91,4 +91,18 @@ class WhatCounts {
 
 		return $this;
 	}
+
+	public function checkStatus()
+	{
+		if ($this->realm === NULL)
+		{
+			throw new Exception('You must set the realm before making a call');
+		}
+		elseif ($this->password === NULL)
+		{
+			throw new Exception('You must set the password before making a call');
+		}
+
+		return TRUE;
+	}
 }
