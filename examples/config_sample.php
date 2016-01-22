@@ -16,3 +16,5 @@ require_once( dirname( __DIR__ ) . '/src/whatcounts_required.php' );
 
 define( 'WC_REALM', '[YOUR_REALM]');
 define( 'WC_PASSWORD', '[YOUR_PASSWORD]' );
+
+echo '<pre>';
