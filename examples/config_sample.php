@@ -11,6 +11,7 @@
 error_reporting( E_ALL );
 ini_set( 'display_errors', 1 );
 
+require_once('/path/to/guzzlehttp');
 require_once( dirname( __DIR__ ) . '/src/whatcounts_required.php' );
 
 define( 'WC_REALM', '[YOUR_REALM]');
