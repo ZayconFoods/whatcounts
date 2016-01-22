@@ -109,4 +109,63 @@ class WhatCounts {
 
 		return TRUE;
 	}
+
+	/**
+	 * @param $command
+	 * @param null $data
+	 *
+	 * @return \SimpleXMLElement
+	 * @throws Exception
+	 */
+	public function call( $command, $data=NULL )
+	{
+		if ($this->checkStatus())
+		{
+			$request = array(
+				'form_params' => [
+					'r' => $this->realm,
+					'p' => $this->password,
+					'c' => $command,
+					'output_format' => 'xml'
+				]
+			);
+
+			if (!empty($data))
+			{
+				$request = array_merge($request['form_params'], $data);
+			}
+
+			$guzzle = new \GuzzleHttp\Client;
+			$response = $guzzle->request(
+				'POST',
+				$this->url,
+				$request
+			);
+
+			$body = (string)$response->getBody();
+
+			if ($body == 'Invalid credentials')
+			{
+				throw new Exception('Invalid Credentials');
+			}
+
+			return new \SimpleXMLElement($body);
+		}
+	}
+
+	/**
+	 * @return Realm
+	 */
+	public function getRealmSettings()
+	{
+		$xml = $this->call('getrealmsettings');
+
+		$realm = new Realm;
+		$realm
+			->setRealmId((int)$xml->Data->realm_id)
+			->setUseCustomerKey((string)$xml->data->use_customer_key)
+			->setEnableRelationalDatabase((string)$xml->Data->enable_relational_database);
+
+		return $realm;
+	}
 }
