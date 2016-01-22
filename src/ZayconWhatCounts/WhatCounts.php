@@ -163,7 +163,7 @@ class WhatCounts {
 		$realm = new Realm;
 		$realm
 			->setRealmId((int)$xml->Data->realm_id)
-			->setUseCustomerKey((string)$xml->data->use_customer_key)
+			->setUseCustomerKey((string)$xml->Data->use_customer_key)
 			->setEnableRelationalDatabase((string)$xml->Data->enable_relational_database);
 
 		return $realm;
