@@ -11,8 +11,8 @@ namespace ZayconWhatCounts;
 class Realm {
 
 	private $realm_id;
-	private $use_customer_key;
-	private $enable_relational_database;
+	private $use_customer_key = FALSE;
+	private $enable_relational_database = FALSE;
 
 	/**
 	 * @return mixed
