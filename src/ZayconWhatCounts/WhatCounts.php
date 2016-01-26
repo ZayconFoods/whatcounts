@@ -8,7 +8,8 @@
 
 namespace ZayconWhatCounts;
 
-class WhatCounts {
+class WhatCounts
+{
 
 	const VERSION = '1.0.0';
 	const DEFAULT_URL = 'https://api.whatcounts.com/bin/api_web';
@@ -24,12 +25,12 @@ class WhatCounts {
 	 * @param null $password
 	 * @param null $url
 	 */
-	public function __construct( $realm=NULL, $password=NULL, $url=NULL )
+	public function __construct($realm = NULL, $password = NULL, $url = NULL)
 	{
 		$this
-			->setRealm( $realm )
-			->setPassword( $password )
-			->setUrl( ($url === NULL) ? self::DEFAULT_URL : $url );
+			->setRealm($realm)
+			->setPassword($password)
+			->setUrl(($url === NULL) ? self::DEFAULT_URL : $url);
 	}
 
 	/**
@@ -45,7 +46,7 @@ class WhatCounts {
 	 *
 	 * @return WhatCounts
 	 */
-	public function setUrl( $url )
+	public function setUrl($url)
 	{
 		$this->url = $url;
 
@@ -65,7 +66,7 @@ class WhatCounts {
 	 *
 	 * @return WhatCounts
 	 */
-	public function setRealm( $realm )
+	public function setRealm($realm)
 	{
 		$this->realm = $realm;
 
@@ -85,7 +86,7 @@ class WhatCounts {
 	 *
 	 * @return WhatCounts
 	 */
-	public function setPassword( $password )
+	public function setPassword($password)
 	{
 		$this->password = $password;
 
@@ -98,12 +99,9 @@ class WhatCounts {
 	 */
 	public function checkStatus()
 	{
-		if ($this->realm === NULL)
-		{
+		if ($this->realm === NULL) {
 			throw new Exception('You must set the realm before making a call');
-		}
-		elseif ($this->password === NULL)
-		{
+		} elseif ($this->password === NULL) {
 			throw new Exception('You must set the password before making a call');
 		}
 
@@ -117,10 +115,9 @@ class WhatCounts {
 	 * @return \SimpleXMLElement
 	 * @throws Exception
 	 */
-	public function call( $command, $data=NULL )
+	public function call($command, $data = NULL)
 	{
-		if ($this->checkStatus())
-		{
+		if ($this->checkStatus()) {
 			$request = array(
 				'form_params' => [
 					'r' => $this->realm,
@@ -130,8 +127,7 @@ class WhatCounts {
 				]
 			);
 
-			if (!empty($data))
-			{
+			if (!empty($data)) {
 				$request = array_merge($request['form_params'], $data);
 			}
 
@@ -144,8 +140,7 @@ class WhatCounts {
 
 			$body = (string)$response->getBody();
 
-			if ($body == 'Invalid credentials')
-			{
+			if ($body == 'Invalid credentials') {
 				throw new Exception('Invalid Credentials');
 			}
 
@@ -169,3 +164,27 @@ class WhatCounts {
 		return $realm;
 	}
 }
+
+	/**
+	 * @return MailingList
+	 */
+	public function showLists()
+	{
+		$data = $this->call('show_lists');
+		$csv = new parseCSV($data);
+
+		$lists = [];
+
+		foreach ($csv->data as $listItem)
+		{
+			$list = new MailingList;
+			$list
+				->setListId($listItem->list_number) // Whatcounts' show_lists command uses list_number instead of list_id
+				->setListName($listItem->list_name)
+				->setDescription($listItem->description)
+				->setFolderId($listItem->folder_id);
+			$lists[] = $list;
+		}
+
+		return $lists;
+	}
