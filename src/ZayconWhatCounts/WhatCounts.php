@@ -163,7 +163,6 @@ class WhatCounts
 
 		return $realm;
 	}
-}
 
 	/**
 	 * @return MailingList
@@ -188,3 +187,5 @@ class WhatCounts
 
 		return $lists;
 	}
+}
+
