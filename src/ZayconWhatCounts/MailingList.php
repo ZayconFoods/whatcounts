@@ -36,7 +36,7 @@ class MailingList
      */
     public function setListId($list_id)
     {
-        $this->$list_id = (is_numeric($list_id)) ? abs(round($list_id)) : NULL;
+        $this->list_id = (is_numeric($list_id)) ? abs(round($list_id)) : NULL;
 
         return $this;
     }
