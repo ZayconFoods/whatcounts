@@ -170,9 +170,9 @@ class WhatCounts
 	public function showLists()
 	{
 		$data = $this->call('show_lists');
-		$csv = new parseCSV($data);
+		$csv = new \parseCSV($data);
 
-		$lists = [];
+		$lists = array();
 
 		foreach ($csv->data as $listItem)
 		{
