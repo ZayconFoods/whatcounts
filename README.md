@@ -8,50 +8,50 @@ PHP API Wrapper for WhatCounts Email System
 getrealmsettings: Get Realm Settings
 
 
-
-
 ####Lists
 
 createlist: Create List
 
 excreatelist: Create List
 
+show\_lists: Show Lists
+
 getlistbyid: Get List by ID
 
 getlistbyname: Get List by Name
 
-show\_lists: Show Lists
-
 updatelist: Update List
-
 
 
 ----
 ##@todo
 
 
-####A/B Tests
+####A/B Testing
 abmailwinner: Choose A/B Winner
 
 getabdefinitionbyid: Get A/B Definition
 
 show\_abdefinitions: Show A/B Definitions
 
+rpt\_abstats: Report A/B Test Statistics
+
 
 ####Articles
-copyarticle: Copy Article
 
 createarticle: Create Article
 
 createblankarticle: Create Article Blank
-
-deletearticle: Delete Article
 
 getarticlewithid: Get Article by ID
 
 getarticlewithname: Get Article by Name
 
 updatearticle: Update Article
+
+deletearticle: Delete Article
+
+copyarticle: Copy Article
 
 
 ####Folders
@@ -65,63 +65,55 @@ getfolderidbypath: Get Folder ID
 rpt\_subscribers\_in\_list: Report Subscribers in List
 
 
-
 ####Templates
 createtemplate: Create Template
+
+show\_templates: Show Templates
 
 gettemplatebyid: Get Template by ID
 
 gettemplatebyname: Get Template by Name
 
-
-####Segmentations
-
-createseg: Create Segmentation Rule
-
-deleteseg: Delete Segmentation Rule
-
-show\_seg: Show Segmentation Rules
-
-testseg: Test Segmentation Rule
-
-updateseg: Update Segmentation Rule
-
-
-####Templates
-
-show\_templates: Show Templates
+updatetemplate: Update Template
 
 templatepreview: Preview Template
 
-updatetemplate: Update Template
+
+####Segmentation Rules
+
+createseg: Create Segmentation Rule
+
+show\_seg: Show Segmentation Rules
+
+updateseg: Update Segmentation Rule
+
+testseg: Test Segmentation Rule
+
+deleteseg: Delete Segmentation Rule
 
 
 ####Social
 
-deletesocialproviderbyid: Delete Social Provider by ID
-
-deletesocialproviderbyusername: Delete Social Provider by Username
-
-getsocialpostsfortemplatebyid: Get Social Posts by Template ID
-
-getsocialpostsfortemplatebyname: Get Social Posts by Template Name
+getsocialproviders: Get All Social Providers
 
 getsocialproviderbyid: Get Social Provider by ID
 
 getsocialproviderbyusername: Get Social Provider by Username
 
-getsocialproviders: Get All Social Providers
+getsocialpostsfortemplatebyid: Get Social Posts by Template ID
+
+getsocialpostsfortemplatebyname: Get Social Posts by Template Name
+
+deletesocialproviderbyid: Delete Social Provider by ID
+
+deletesocialproviderbyusername: Delete Social Provider by Username
 
 setsocialpostfortemplate: Set Social Post for Template
 
 
-####Subscribers
-
-send: Send One-Off Message
+####Subscriber Management
 
 sub: Subscribe
-
-subandsend: Subscribe and Send One-Off Message
 
 unsub: Unsubscribe
 
@@ -137,12 +129,23 @@ update: Update Subscriber
 
 change: Change Email Address
 
+addtolifecyclecampaign: Add Subscriber to Lifecycle Campaign
 
-####Campaigns
+
+####Send Mail
+
+send: Send One-Off Message
+
+subandsend: Subscribe and Send One-Off Message
 
 launch: Launch Campaign
 
 schedule\_deployment: Schedule Campaign Deployment
+
+springbot\_process\_abandoned\_cart: Process Abandoned Cart
+
+
+####Campaigns
 
 show\_block: Show Block Bounces
 
@@ -190,8 +193,6 @@ relationalsave: Save Data
 
 ####Reporting
 
-rpt\_abstats: Report A/B Test Statistics
-
 rpt\_bounce\_stats: Report Bounce Statistics
 
 rpt\_browser\_info: Report Browser Info
@@ -213,11 +214,3 @@ rpt\_tracked\_events: Report Tracked Events
 rpt\_tracked\_events\_by\_campaign: Report Tracked Events by Campaign
 
 rpt\_unsubscribe: Report Unsubscribes
-
-
-####??
-
-springbot\_process\_abandoned\_cart: Process Abandoned Cart
-
-
-
