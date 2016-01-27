@@ -156,7 +156,7 @@ class WhatCounts
 				return $result;
 			}
 
-			if ((int)substr_compare($body, "<Data>", 0, 6) == 0) return new \SimpleXMLElement($body);
+			if ((int)substr_compare($body, "<Data>", 0, 6, 1) == 0) return new \SimpleXMLElement($body);
 			return $body;
 		}
 	}
@@ -322,5 +322,32 @@ class WhatCounts
 		return $list;
 	}
 
+
+	public function findSubscribers(Subscriber $subscriber, $exact_match = false)
+	{
+		$form_data = array(
+			'email' => $subscriber->getEmail(),
+			'first' => $subscriber->getFirstName(),
+			'last' => $subscriber->getLastName(),
+			'exact' => (int)$exact_match,
+		);
+		$xml = $this->call('find', $form_data);
+
+		$subscribers = array();
+
+		foreach ($xml->subscriber as $subscriberItem)
+		{
+			$subscriber = new Subscriber;
+			$subscriber
+				->setListCount((int)$subscriberItem->lists)
+				->setEmail((string)$subscriberItem->email)
+				->setFirstName((string)$subscriberItem->first)
+				->setLastName((string)$subscriberItem->last)
+				->setSubscriberId((int)$subscriberItem->subscriber_id);
+			$subscribers[] = $subscriber;
+		}
+
+		return $subscribers;
+	}
 }
 
