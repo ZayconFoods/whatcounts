@@ -1,0 +1,37 @@
+
+{
+  "name": "zaycon/whatcounts",
+  "description": "PHP API Wrapper for WhatCounts Email System",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ZayconFoods/whatcounts",
+  "license": "MIT",
+  "keywords": ["Whatcounts", "whatcounts"],
+  "require": {
+    "php": ">=5.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.8.*",
+    "satooshi/php-coveralls": "dev-master",
+    "parsecsv/php-parsecsv": "0.4.5"
+  },
+  "type": "library",
+  "authors": [
+    {
+      "name": "Tony DeStefano",
+      "email": "tony@zayconfresh.com",
+      "homepage": "https://www.zayconfresh.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Mark Simonds",
+      "email": "mark@zayconfresh.com",
+      "homepage": "https://www.zayconfresh.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "ZayconWhatCounts\\": "src/"
+    }
+  }
+}
