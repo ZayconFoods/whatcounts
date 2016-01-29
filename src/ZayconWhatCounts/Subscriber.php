@@ -29,8 +29,8 @@ class Subscriber
     private $phone;
     private $fax;
     private $company;
-    private $override_confirmation;
-    private $force_sub;
+    private $override_confirmation = FALSE;
+    private $force_sub = FALSE;
     private $lists = array();
 
     /**
@@ -342,7 +342,7 @@ class Subscriber
     /**
      * @return mixed
      */
-    public function getOverrideConfirmation()
+    public function isOverrideConfirmation()
     {
         return $this->override_confirmation;
     }
@@ -353,14 +353,14 @@ class Subscriber
      */
     public function setOverrideConfirmation($override_confirmation)
     {
-        $this->override_confirmation = $override_confirmation;
+        $this->override_confirmation = ($override_confirmation == 1 || $override_confirmation == 'Y' || $override_confirmation === TRUE) ? TRUE : FALSE;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getForceSub()
+    public function isForceSub()
     {
         return $this->force_sub;
     }
@@ -371,7 +371,7 @@ class Subscriber
      */
     public function setForceSub($force_sub)
     {
-        $this->force_sub = $force_sub;
+        $this->force_sub = ($force_sub == 1 || $force_sub == 'Y' || $force_sub === TRUE) ? TRUE : FALSE;
         return $this;
     }
 

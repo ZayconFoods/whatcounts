@@ -27,7 +27,7 @@ class Mail
     private $virtual_mta;
     private $first_name;
     private $duplicate;
-    private $ignore_optout;
+    private $ignore_optout = FALSE;
     private $character_encoding;
     private $data;
 
@@ -322,7 +322,7 @@ class Mail
     /**
      * @return mixed
      */
-    public function getIgnoreOptout()
+    public function isIgnoreOptout()
     {
         return $this->ignore_optout;
     }
@@ -333,7 +333,7 @@ class Mail
      */
     public function setIgnoreOptout($ignore_optout)
     {
-        $this->ignore_optout = $ignore_optout;
+        $this->ignore_optout = ($ignore_optout == 1 || $ignore_optout == 'Y' || $ignore_optout === TRUE) ? TRUE : FALSE;
         return $this;
     }
 

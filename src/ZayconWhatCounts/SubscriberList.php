@@ -14,7 +14,7 @@
         private $list_id;
         private $created_date;
         private $last_sent;
-        private $sent_flag;
+        private $sent_flag = FALSE;
         private $format;
 
         /**
@@ -80,7 +80,7 @@
         /**
          * @return mixed
          */
-        public function getSentFlag()
+        public function isSentFlag()
         {
             return $this->sent_flag;
         }
@@ -92,7 +92,7 @@
          */
         public function setSentFlag($sent_flag)
         {
-            $this->sent_flag = $sent_flag;
+            $this->sent_flag = ($sent_flag == 1 || $sent_flag == 'Y' || $sent_flag === TRUE) ? TRUE : FALSE;
 
             return $this;
         }

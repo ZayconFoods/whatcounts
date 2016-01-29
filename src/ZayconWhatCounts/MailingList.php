@@ -167,7 +167,7 @@ class MailingList
      */
     public function setTrackClicks($track_clicks)
     {
-        $this->track_clicks = $track_clicks;
+        $this->track_clicks = ($track_clicks == 1 || $track_clicks == 'Y' || $track_clicks === TRUE) ? TRUE : FALSE;
         return $this;
     }
 
@@ -185,7 +185,7 @@ class MailingList
      */
     public function setTrackOpens($track_opens)
     {
-        $this->track_opens = $track_opens;
+        $this->track_opens = ($track_opens == 1 || $track_opens == 'Y' || $track_opens === TRUE) ? TRUE : FALSE;
         return $this;
     }
 
