@@ -16,8 +16,9 @@ try
     $subscriber = new ZayconWhatCounts\Subscriber;
     $subscriber->setFirstName("Mark");
     $subscriber->setLastName("Simonds");
+    $subscriber->setEmail("mark@zayconfoods.com");
 
-    $subscribers = $whatcounts->findSubscribers($subscriber);
+    $subscribers = $whatcounts->findSubscriberInList($subscriber, 12, TRUE);
     var_dump($subscribers);
 }
 catch ( ZayconWhatCounts\Exception $e )

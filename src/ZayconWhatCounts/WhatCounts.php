@@ -12,13 +12,15 @@
      * Class WhatCounts
      * @package ZayconWhatCounts
      *
-     * @todo pass function parameters by reference if it is going to be returned
+     * @todo Pass function parameters by reference if it is going to be returned
+     * @todo Document which calls don't return well formed XML, and therefore need to be parsed as CSV.
      */
 
     class WhatCounts
     {
 
-        const VERSION = '8.4.0';
+        //const VERSION = '8.4.0';
+        const VERSION = '';
         const DEFAULT_URL = 'https://api.whatcounts.com/bin/api_web';
 
         private $url;
@@ -123,7 +125,6 @@
             return $this;
         }
 
-
         /**
          * @return bool
          * @throws Exception
@@ -173,13 +174,17 @@
 
                 $body = (string)$response->getBody();
 
+                if (empty($body)) {
+                    throw new Exception("No results");
+                }
+
                 if ($body == 'Invalid credentials') {
                     throw new Exception('Invalid Credentials');
                 }
 
                 if ((int)substr_compare($body, "FAILURE", 0, 7) == 0) {
                     $result = explode(":", $body);
-                    throw new Exception($result[1]);
+                    throw new Exception(trim($result[1]));
                 }
 
                 if ((int)substr_compare($body, "SUCCESS", 0, 7) == 0) {
@@ -188,7 +193,7 @@
                     return $result;
                 }
 
-                if ((int)substr_compare($body, "<Data>", 0, 6, 1) == 0) return new \SimpleXMLElement($body);
+                if ((int)substr_compare($body, "<data>", 0, 6, 1) == 0) return new \SimpleXMLElement($body);
 
                 return $body;
             }
@@ -317,7 +322,7 @@
             );
             $data = $this->call('excreatelist', $form_data);
 
-            $list->setListId($data[1]);
+            $list->setListId(trim($data[1]));
         }
 
         /**
@@ -406,17 +411,19 @@
 
         /**
          * @param Subscriber $subscriber
+         * @param null $list_id
          * @param bool $exact_match
          *
          * @return array
          * @throws Exception
          */
-        public function findSubscriberInList(Subscriber $subscriber, $exact_match = FALSE)
+        public function findSubscriberInList(Subscriber $subscriber, $list_id = NULL, $exact_match = FALSE)
         {
             $form_data = array(
                 'email' => $subscriber->getEmail(),
                 'first' => $subscriber->getFirstName(),
                 'last'  => $subscriber->getLastName(),
+                'list_id' => $list_id,
                 'exact' => (int)$exact_match,
             );
             $xml = $this->call('findinlist', $form_data);
@@ -443,32 +450,54 @@
          * @return Subscriber
          * @throws Exception
          *
-         * @todo Populate $form_data with relevant fields from $subscriber
-         * @todo Create test in examples/
          */
         public function subscribe(Subscriber $subscriber)
         {
-            $form_data = array();
+            $form_data = array(
+                'list_id' => $subscriber->getListId(),
+                'format' => $subscriber->getFormat(),
+                'force_sub' => $subscriber->getForceSub(),
+                'override_confirmation' => $subscriber->getOverrideConfirmation(),
+                'data' => 'email,first,last,address_1,address_2,city,state,zip,country,phone,fax,company^'
+                    . $subscriber->getEmail() . ','
+                    . $subscriber->getFirstName() . ','
+                    . $subscriber->getLastName() . ','
+                    . $subscriber->getAddress1() . ','
+                    . $subscriber->getAddress2() . ','
+                    . $subscriber->getCity() . ','
+                    . $subscriber->getState() . ','
+                    . $subscriber->getZip() . ','
+                    . $subscriber->getCountry() . ','
+                    . $subscriber->getPhone() . ','
+                    . $subscriber->getFax() . ','
+                    . $subscriber->getCompany()
+            );
             $xml = $this->call('sub', $form_data);
 
-            return $subscriber;
+            return trim($xml[1]);
         }
 
         /**
          * @param Subscriber $subscriber
+         * @param $list_id
+         * @param bool $force_optout
          *
-         * @return Subscriber
+         * @return string
          * @throws Exception
-         *
-         * @todo Populate $form_data with relevant fields from $subscriber
-         * @todo Create test in examples/
          */
-        public function unsubscribe(Subscriber $subscriber)
+        public function unsubscribe(Subscriber $subscriber, $list_id, $force_optout = FALSE)
         {
-            $form_data = array();
+            $form_data = array(
+                'list_id' => $list_id,
+                'force_optout' => $force_optout,
+                'data' => 'email,first,last^'
+                    . $subscriber->getEmail() . ','
+                    . $subscriber->getFirstName() . ','
+                    . $subscriber->getLastName()
+            );
             $xml = $this->call('unsub', $form_data);
 
-            return $subscriber;
+            return trim($xml[1]);
         }
 
         /**
@@ -489,18 +518,50 @@
         }
 
         /**
-         * @param Subscriber $subscriber
+         * @param $subscriber_id
          *
          * @return Subscriber
          * @throws Exception
-         *
-         * @todo Populate $form_data with relevant fields from $subscriber
-         * @todo Create test in examples/
          */
-        public function showSubscriber(Subscriber $subscriber)
+        public function showSubscriber($subscriber_id)
         {
-            $form_data = array();
+            $form_data = array(
+                'subscriber_id' => $subscriber_id
+            );
             $xml = $this->call('detail', $form_data);
+            $subscriber_data = $xml->subscriber;
+
+            $subscriber = new Subscriber;
+            $subscriber->setSubscriberId((int)$subscriber_data->subscriber_id);
+            $subscriber->setEmail((string)$subscriber_data->email);
+            $subscriber->setFirstName((string)$subscriber_data->first);
+            $subscriber->setLastName((string)$subscriber_data->last);
+            $subscriber->setCompany((string)$subscriber_data->company);
+            $subscriber->setAddress1((string)$subscriber_data->address_1);
+            $subscriber->setAddress2((string)$subscriber_data->address_2);
+            $subscriber->setCity((string)$subscriber_data->city);
+            $subscriber->setState((string)$subscriber_data->state);
+            $subscriber->setZip((string)$subscriber_data->zip);
+            $subscriber->setCountry((string)$subscriber_data->country);
+            $subscriber->setPhone((string)$subscriber_data->phone);
+            $subscriber->setFax((string)$subscriber_data->fax);
+
+            $list_ids = (array)explode(",", $subscriber_data->lists);
+            $subscriber_lists = array();
+            $subscription_details = $subscriber_data->subscription_details;
+
+            foreach ($list_ids as $list_id)
+            {
+                $subscriber_list = New SubscriberList;
+                $subscriber_list->setListId((int)$list_id);
+                $subscriber_list->setCreatedDate($subscription_details->{'list_' . $list_id}->created_date);
+                $subscriber_list->setLastSent($subscription_details->{'list_' . $list_id}->last_sent);
+                $subscriber_list->setSentFlag($subscription_details->{'list_' . $list_id}->sent_flag);
+                $subscriber_list->setFormat($subscription_details->{'list_' . $list_id}->format);
+
+                $subscriber_lists[] = $subscriber_list;
+            }
+            $subscriber->setLists($subscriber_lists);
 
             return $subscriber;
         }
@@ -1114,7 +1175,7 @@
          *
          * @todo Create test in examples/
          */
-        public function getSocialProviderByUserName(SocialProvider $social_provider)
+        public function deleteSocialProviderByUserName(SocialProvider $social_provider)
         {
             $form_data = array(
                 'social_provider_name' => $social_provider->getProviderName(),
@@ -1193,7 +1254,6 @@
 
             return $social_posts;
         }
-
 
         /**
          * @todo Write function

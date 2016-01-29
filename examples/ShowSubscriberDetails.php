@@ -13,12 +13,10 @@ try
     /* initialize whatcounts */
     $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-    $subscriber = new ZayconWhatCounts\Subscriber;
-    $subscriber->setFirstName("Mark");
-    $subscriber->setLastName("Simonds");
+    $subscriber_id = 142975;
 
-    $subscribers = $whatcounts->findSubscribers($subscriber);
-    var_dump($subscribers);
+    $subscriber = $whatcounts->showSubscriber($subscriber_id);
+    var_dump($subscriber);
 }
 catch ( ZayconWhatCounts\Exception $e )
 {
