@@ -201,6 +201,8 @@
 
 		/**
 		 * @return Realm
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969879
 		 */
 		public function getRealmSettings()
 		{
@@ -218,6 +220,8 @@
 		/**
 		 * @return array
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669705
 		 */
 		public function showLists()
 		{
@@ -248,6 +252,8 @@
 		 * @return MailingList
 		 *
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669715
 		 */
 		public function getListById($list_id)
 		{
@@ -278,6 +284,8 @@
 		 * @return MailingList
 		 *
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669715
 		 */
 		public function getListByName($list_name)
 		{
@@ -306,6 +314,8 @@
 		 * @param MailingList $list
 		 *
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969409
 		 */
 		public function exCreateList(MailingList &$list)
 		{
@@ -331,6 +341,8 @@
 		 * @return bool
 		 *
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969409
 		 */
 		public function createList(MailingList $list)
 		{
@@ -356,6 +368,8 @@
 		 * @return bool
 		 *
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969419
 		 */
 		public function updateList(MailingList $list)
 		{
@@ -382,6 +396,8 @@
 		 *
 		 * @return array
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669925
 		 */
 		public function findSubscribers(Subscriber $subscriber, $exact_match = FALSE)
 		{
@@ -416,6 +432,8 @@
 		 *
 		 * @return array
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969649
 		 */
 		public function findSubscriberInList(Subscriber $subscriber, $list_id = NULL, $exact_match = FALSE)
 		{
@@ -449,6 +467,8 @@
 		 *
 		 * @return Subscriber
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969609
 		 *
 		 */
 		public function subscribe(Subscriber $subscriber)
@@ -485,6 +505,8 @@
 		 * @return string
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969639
+		 *
 		 */
 		public function unsubscribe(Subscriber $subscriber, $list_id, $force_optout = FALSE)
 		{
@@ -507,6 +529,8 @@
 		 * @return string
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669915
+		 *
 		 */
 		public function deleteSubscriber(Subscriber $subscriber)
 		{
@@ -523,6 +547,8 @@
 		 *
 		 * @return string
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669915
 		 */
 		public function deleteSubscribers(Array $subscribers)
 		{
@@ -540,6 +566,8 @@
 		 *
 		 * @return Subscriber
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969659
 		 */
 		public function showSubscriber($subscriber_id)
 		{
@@ -589,6 +617,8 @@
 		 * @return string
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969619
+		 *
 		 */
 		public function updateSubscriber(Subscriber $subscriber)
 		{
@@ -619,6 +649,8 @@
 		 * @param $new_email
 		 *
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969629
 		 */
 		public function changeEmailAddress(Subscriber &$subscriber, $new_email)
 		{
@@ -637,6 +669,8 @@
 		 *
 		 * @return string
 		 * @throws Exception
+		 *
+		 * API documentation: https://support.whatcounts.com/hc/en-us/articles/203969779
 		 */
 		public function addSubscriberToLifecycleCampaign(Subscriber $subscriber, $lc_campaign_name)
 		{
@@ -654,6 +688,8 @@
 		/**
 		 * @return array
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969439
 		 *
 		 * @todo Create test in examples/
 		 */
@@ -681,6 +717,8 @@
 		 * @return SegmentationRule
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669735
+		 *
 		 * @todo Populate $form_data with relevant fields from $segmentation_rule
 		 * @todo Create test in examples/
 		 */
@@ -698,6 +736,8 @@
 		 * @return SegmentationRule
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669745
+		 *
 		 * @todo Populate $form_data with relevant fields from $segmentation_rule
 		 * @todo Create test in examples/
 		 */
@@ -712,6 +752,8 @@
 		 *
 		 * @return SegmentationRule
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969459
 		 *
 		 * @todo Populate $form_data with relevant fields from $segmentation_rule
 		 * @todo Create test in examples/
@@ -730,6 +772,8 @@
 		 * @return mixed
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969449
+		 *
 		 * @todo Populate $form_data with relevant fields from $segmentation_rule
 		 * @todo Create test in examples/
 		 */
@@ -744,6 +788,8 @@
 		/**
 		 * @return array
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969479
 		 *
 		 * @todo Create test in examples/
 		 */
@@ -771,6 +817,8 @@
 		 * @return Template
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969489
+		 *
 		 * @todo Create test in examples/
 		 */
 		public function getTemplateById($template_id)
@@ -790,6 +838,8 @@
 		 *
 		 * @return Template
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969489
 		 *
 		 * @todo Create test in examples/
 		 */
@@ -811,6 +861,8 @@
 		 * @return Template
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969469
+		 *
 		 * @todo Populate $form_data with relevant fields from $template
 		 * @todo Create test in examples/
 		 */
@@ -827,6 +879,8 @@
 		 *
 		 * @return Template
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669765
 		 *
 		 * @todo Populate $form_data with relevant fields from $template
 		 * @todo Create test in examples/
@@ -845,6 +899,8 @@
 		 * @return Template
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669775
+		 *
 		 * @todo Populate $form_data with relevant fields from $template
 		 * @todo Create test in examples/
 		 */
@@ -859,6 +915,8 @@
 		/**
 		 * @return array
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969509
 		 *
 		 * @todo Create test in examples/
 		 */
@@ -886,6 +944,8 @@
 		 * @return Article
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669805
+		 *
 		 * @todo Create test in examples/
 		 */
 		public function getArticleById($article_id)
@@ -906,6 +966,8 @@
 		 * @return Article
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669805
+		 *
 		 * @todo Create test in examples/
 		 */
 		public function getArticleByName($article_name)
@@ -925,6 +987,8 @@
 		 *
 		 * @return Article
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669815
 		 *
 		 * @todo Create test in examples/
 		 * @todo Do we need to pass in an Article object?
@@ -947,6 +1011,8 @@
 		 * @return Article
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969499
+		 *
 		 * @todo Populate $form_data with relevant fields from $article
 		 * @todo Create test in examples/
 		 */
@@ -963,6 +1029,8 @@
 		 *
 		 * @return Article
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969499
 		 *
 		 * @todo Populate $form_data with relevant fields from $article
 		 * @todo Create test in examples/
@@ -981,6 +1049,8 @@
 		 * @return Article
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969519
+		 *
 		 * @todo Populate $form_data with relevant fields from $article
 		 * @todo Create test in examples/
 		 */
@@ -998,6 +1068,8 @@
 		 * @return Article
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969529
+		 *
 		 * @todo Populate $form_data with relevant fields from $article
 		 * @todo Create test in examples/
 		 */
@@ -1012,6 +1084,8 @@
 		/**
 		 * @return array
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670035
 		 *
 		 * @todo Populate $ab_test with fields from $ab_test_item
 		 * @todo Create test in examples/
@@ -1036,6 +1110,8 @@
 		 * @return ABTest
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969789
+		 *
 		 * @todo Populate $ab_test with fields from $xml
 		 * @todo Create test in examples/
 		 */
@@ -1056,6 +1132,8 @@
 		 *
 		 * @return ABTestStatistics
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670045
 		 *
 		 * @todo Populate $ab_test_statistics with fields from $xml
 		 * @todo Create test in examples/
@@ -1078,6 +1156,8 @@
 		 * @return bool
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670055
+		 *
 		 * @todo Find out how to get $ab_definition_id
 		 * @todo Create test in examples/
 		 */
@@ -1099,6 +1179,8 @@
 		 * @return Field
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669835
+		 *
 		 * @todo Populate $form_data with relevant fields from $field
 		 * @todo Create test in examples/
 		 */
@@ -1116,6 +1198,8 @@
 		 * @return Field
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669845
+		 *
 		 * @todo Populate $form_data with relevant fields from $field
 		 * @todo Create test in examples/
 		 */
@@ -1130,6 +1214,8 @@
 		/**
 		 * @return array
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969549
 		 *
 		 * @todo Populate $social_provider with relevant fields from $social_provider_item
 		 * @todo Create test in examples/
@@ -1154,6 +1240,8 @@
 		 * @return SocialProvider
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669885
+		 *
 		 * @todo Populate $social_provider with relevant fields from $xml
 		 * @todo Create test in examples/
 		 */
@@ -1175,6 +1263,8 @@
 		 *
 		 * @return SocialProvider
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969559
 		 *
 		 * @todo Create test in examples/
 		 */
@@ -1198,6 +1288,8 @@
 		 * @return bool
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969569
+		 *
 		 * @todo Create test in examples/
 		 */
 		public function deleteSocialProviderById(SocialProvider $social_provider)
@@ -1215,6 +1307,8 @@
 		 *
 		 * @return bool
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969579
 		 *
 		 * @todo Create test in examples/
 		 */
@@ -1236,6 +1330,8 @@
 		 * @return bool
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969589
+		 *
 		 * @todo Populate $form_data with relevant fields from $template and $social_provider
 		 * @todo Create test in examples/
 		 */
@@ -1252,6 +1348,8 @@
 		 *
 		 * @return array
 		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969599
 		 *
 		 * @todo Populate $social_post with relevant fields from $social_post_item
 		 * @todo Create test in examples/
@@ -1279,6 +1377,8 @@
 		 * @return array
 		 * @throws Exception
 		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669895
+		 *
 		 * @todo Create test in examples/
 		 */
 		public function getSocialPostsByTemplateName(Template $template)
@@ -1298,254 +1398,451 @@
 			return $social_posts;
 		}
 
-		/**
-		 * @todo Write function
-		 * @todo Auto-document function
-		 * @todo Create test in examples/
-		 */
-		public function sendOneOffMessage()
-		{
 
+		/**
+		 * @param Mail $message
+		 *
+		 * @return string
+		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969749
+		 */
+		public function sendOneOffMessage(Mail $message) {
+			$form_data = array(
+				'list_id' => $message->getListId(),
+				'from' => $message->getFromAddress(),
+				'reply_to_address' => $message->getReplyToAddress(),
+				'errors_to' => $message->getBounceAddress(),
+				'sender' => $message->getSenderAddress(),
+				'to' => $message->getSendToAddress(),
+				'cc' => $message->getCcToAddress(),
+				'template_id' => $message->getTemplateId(),
+				'plain_text_body' => $message->getBodyText(),
+				'html_body' => $message->getBodyHtml(),
+				'subject' => $message->getSubject(),
+				'format' => $message->getFormat(),
+				'campaign_name' => $message->getCampaignName(),
+				'vmta' => $message->getVirtualMta(),
+				'first_name' => $message->getFirstName(),
+				'dup' => $message->isDuplicate(),
+				'ignore_optout' => $message->isIgnoreOptout(),
+				'charset' => $message->getCharacterEncoding(),
+				'data' => $message->getData(),
+			);
+			$xml = $this->call('send', $form_data);
+
+			return trim($xml[1]);
+		}
+
+		/**
+		 * @param Mail $message
+		 *
+		 * @return string
+		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669975
+		 */
+		public function subscribeAndSendOneOffMessage(Mail $message)
+		{
+			$form_data = array(
+				'list_id' => $message->getListId(),
+				'from' => $message->getFromAddress(),
+				'reply_to_address' => $message->getReplyToAddress(),
+				'errors_to' => $message->getBounceAddress(),
+				'sender' => $message->getSenderAddress(),
+				'to' => $message->getSendToAddress(),
+				'cc' => $message->getCcToAddress(),
+				'template_id' => $message->getTemplateId(),
+				'plain_text_body' => $message->getBodyText(),
+				'html_body' => $message->getBodyHtml(),
+				'subject' => $message->getSubject(),
+				'format' => $message->getFormat(),
+				'campaign_name' => $message->getCampaignName(),
+				'vmta' => $message->getVirtualMta(),
+				'first_name' => $message->getFirstName(),
+				'dup' => $message->isDuplicate(),
+				'ignore_optout' => $message->isIgnoreOptout(),
+				'charset' => $message->getCharacterEncoding(),
+				'data' => $message->getData(),
+			);
+			$xml = $this->call('subandsend', $form_data);
+
+			return trim($xml[1]);
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
-		 */
-		public function subscribeAndSendOneOffMessage()
-		{
-
-		}
-
-		/**
-		 * @todo Write function
-		 * @todo Auto-document function
-		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669985
 		 */
 		public function launchCampaign()
 		{
+			$form_data = array();
+			$xml = $this->call('launch', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669995
 		 */
 		public function scheduleCampaign()
 		{
+			$form_data = array();
+			$xml = $this->call('schedule_deployment', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670005
 		 */
 		public function processSpringbotAbandonedCart()
 		{
+			$form_data = array();
+			$xml = $this->call('springbot_process_abandoned_cart', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969759
 		 */
 		public function showCampaigns()
 		{
+			$form_data = array();
+			$xml = $this->call('show_campaigns', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969769
 		 */
 		public function reportCampaignList()
 		{
+			$form_data = array();
+			$xml = $this->call('rpt_campaign_list', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969799
 		 */
 		public function showCampaignStatistics()
 		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969809
 		 */
 		public function showMultipleCampaginStatistics()
 		{
+			$form_data = array();
+			$xml = $this->call('show_campaign_stats', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://support.whatcounts.com/hc/en-us/articles/204670075
 		 */
 		public function reportCampaignClicks()
 		{
+			$form_data = array();
+			$xml = $this->call('rpt_click_overview', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670085
 		 */
 		public function reportSubscriberClicks()
 		{
+			$form_data = array();
+			$xml = $this->call('rpt_clicked_on', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670095
 		 */
 		public function reportDailyStatistics()
 		{
+			$form_data = array();
+			$xml = $this->call('rpt_daily_stats', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969819
 		 */
 		public function reportBrowserInfo()
 		{
+			$form_data = array();
+			$xml = $this->call('rpt_browser_info', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670105
 		 */
 		public function reportBounceStatistics()
 		{
+			$form_data = array();
+			$xml = $this->call('rpt_bounce_stats', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969829
 		 */
 		public function reportTrackedEvents()
 		{
+			$form_data = array();
+			$xml = $this->call('rpt_tracked_events', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969839
 		 */
 		public function reportTrackedEventsByCampaign()
 		{
+			$form_data = array();
+			$xml = $this->call('rpt_tracked_events_by_campaign', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969849
 		 */
 		public function showUserEvents()
 		{
+			$form_data = array();
+			$xml = $this->call('show_user_events', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670115
 		 */
 		public function reportSubscriberEvents()
 		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670125
 		 */
 		public function reportUnsubscribes()
 		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670135
 		 */
 		public function showOptouts()
 		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969859
 		 */
 		public function showGlobalOptouts()
 		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670145
 		 */
 		public function showHardBounces()
 		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670155
 		 */
 		public function showSoftBounces()
 		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969869
 		 */
 		public function showBlockBounces()
 		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
 
+			return $xml;
 		}
 
 		/**
 		 * @todo Write function
 		 * @todo Auto-document function
 		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670165
 		 */
 		public function showComplaints()
 		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
 
+			return $xml;
+		}
+
+		/**
+		 * @todo Write function
+		 * @todo Auto-document function
+		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969669
+		 */
+		public function reportSubscriberByUpdate()
+		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
+
+			return $xml;
+		}
+
+		/**
+		 * @todo Write function
+		 * @todo Auto-document function
+		 * @todo Create test in examples/
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969429
+		 */
+		public function reportSubscribersInList()
+		{
+			$form_data = array();
+			$xml = $this->call('', $form_data);
+
+			return $xml;
 		}
 	}
 

@@ -2,25 +2,53 @@
 PHP API Wrapper for WhatCounts Email System
 
 ----
-##Available commands
+##Available functions
 
 ####Realms
-getrealmsettings: Get Realm Settings
+getRealmSettings: Get Realm Settings
 
 
 ####Lists
 
-createlist: Create List
+showLists: Show Lists
 
-excreatelist: Create List
+getListById: Get List by ID
 
-show\_lists: Show Lists
+getListByName: Get List by Name
 
-getlistbyid: Get List by ID
+exCreateList: Create List
 
-getlistbyname: Get List by Name
+createList: Create List
 
-updatelist: Update List
+updateList: Update List
+
+
+####Subscriber Management
+
+findSubscribers: Find Subscriber
+
+findSubscriberInList: Find Subscriber in List
+
+sub: Subscribe
+
+unsubscribe: Unsubscribe
+
+deleteSubscriber: Delete Subscriber
+
+showSubscriber: Show Subscriber Details
+
+updateSubscriber: Update Subscriber
+
+changeEmailAddress: Change Email Address
+
+addSubscriberToLifecycleCampaign: Add Subscriber to Lifecycle Campaign
+
+
+####Send Mail
+
+sendOneOffMessage: Send One-Off Message
+
+subscribeAndSendOneOffMessage: Subscribe and Send One-Off Message
 
 
 ----
@@ -28,149 +56,98 @@ updatelist: Update List
 
 
 ####A/B Testing
-abmailwinner: Choose A/B Winner
+showABDefinitions: Show A/B Definitions
 
-getabdefinitionbyid: Get A/B Definition
+getABDefinition: Get A/B Definition
 
-show\_abdefinitions: Show A/B Definitions
+reportABTestStatistics: Report A/B Test Statistics
 
-rpt\_abstats: Report A/B Test Statistics
+chooseABWinner: Choose A/B Winner
 
 
 ####Articles
+showArticles: Show Articles
 
-createarticle: Create Article
+getArticleById: Get Article by ID
 
-createblankarticle: Create Article Blank
+getArticleByName: Get Article by Name
 
-getarticlewithid: Get Article by ID
+copyArticle: Copy Article
 
-getarticlewithname: Get Article by Name
+createBlankArticle: Create Article Blank
 
-updatearticle: Update Article
+createArticle: Create Article
 
-deletearticle: Delete Article
+updateArticle: Update Article
 
-copyarticle: Copy Article
+deleteArticle: Delete Article
 
 
 ####Folders
-createfolderpath: Create Folder
+createFolder: Create Folder
 
-getfolderidbypath: Get Folder ID
-
-
-####Lists
-
-rpt\_subscribers\_in\_list: Report Subscribers in List
+getFolderById: Get Folder ID
 
 
 ####Templates
-createtemplate: Create Template
+showTemplates: Show Templates
 
-show\_templates: Show Templates
+getTemplateById: Get Template by ID
 
-gettemplatebyid: Get Template by ID
+getTemplateByName: Get Template by Name
 
-gettemplatebyname: Get Template by Name
+createTemplate: Create Template
 
-updatetemplate: Update Template
+updateTemplate: Update Template
 
-templatepreview: Preview Template
+previewTemplate: Preview Template
 
 
 ####Segmentation Rules
 
-createseg: Create Segmentation Rule
+showSegmentationRules: Show Segmentation Rules
 
-show\_seg: Show Segmentation Rules
+createSegmentationRule: Create Segmentation Rule
 
-updateseg: Update Segmentation Rule
+updateSegmentationRule: Update Segmentation Rule
 
-testseg: Test Segmentation Rule
+deleteSegmentationRule: Delete Segmentation Rule
 
-deleteseg: Delete Segmentation Rule
+testSegmentationRule: Test Segmentation Rule
+
 
 
 ####Social
 
-getsocialproviders: Get All Social Providers
+getSocialProviders: Get All Social Providers
 
-getsocialproviderbyid: Get Social Provider by ID
+getSocialProviderById: Get Social Provider by ID
 
-getsocialproviderbyusername: Get Social Provider by Username
+getSocialProviderByUserName: Get Social Provider by Username
 
-getsocialpostsfortemplatebyid: Get Social Posts by Template ID
+deleteSocialProviderById: Delete Social Provider by ID
 
-getsocialpostsfortemplatebyname: Get Social Posts by Template Name
+deleteSocialProviderByUserName: Delete Social Provider by Username
 
-deletesocialproviderbyid: Delete Social Provider by ID
+setSocialPostForTemplate: Set Social Post for Template
 
-deletesocialproviderbyusername: Delete Social Provider by Username
+getSocialPostsByTemplateId: Get Social Posts by Template ID
 
-setsocialpostfortemplate: Set Social Post for Template
-
-
-####Subscriber Management
-
-sub: Subscribe
-
-unsub: Unsubscribe
-
-delete: Delete Subscriber
-
-detail: Show Subscriber Details
-
-find: Find Subscriber
-
-findinlist: Find Subscriber in List
-
-update: Update Subscriber
-
-change: Change Email Address
-
-addtolifecyclecampaign: Add Subscriber to Lifecycle Campaign
+getSocialPostsByTemplateName: Get Social Posts by Template Name
 
 
 ####Send Mail
 
-send: Send One-Off Message
+launchCampaign: Launch Campaign
 
-subandsend: Subscribe and Send One-Off Message
+scheduleCampaignt: Schedule Campaign Deployment
 
-launch: Launch Campaign
-
-schedule\_deployment: Schedule Campaign Deployment
-
-springbot\_process\_abandoned\_cart: Process Abandoned Cart
-
-
-####Campaigns
-
-show\_block: Show Block Bounces
-
-show\_campaign\_stats: Show Campaign Statistics
-
-show\_campaign\_stats\_multi: Show Multiple Campaign Statistics
-
-show\_campaigns: Show Campaigns
-
-show\_complaint: Show Complaints
-
-show\_hard: Show Hard Bounces
-
-show\_opt: Show Optouts
-
-show\_optglobal: Show Global Optouts
-
-show\_soft: Show Soft Bounces
-
-show\_user\_events: Show User Events
-
-showarticlelist: Show Articles
+processSpringbotAbandonedCart: Process Abandoned Cart
 
 
 ####Relational Data
+
+No API documentation exists for these commands (https://support.whatcounts.com/hc/en-us/articles/204669685-Commands)
 
 relationalactivatefield: Activate Field
 
@@ -193,24 +170,60 @@ relationalsave: Save Data
 
 ####Reporting
 
-rpt\_bounce\_stats: Report Bounce Statistics
+showCampaigns: Show Campaigns
 
-rpt\_browser\_info: Report Browser Info
+reportCampaignList: Report Campaign List
 
-rpt\_campaign\_list: Report Campaign List
+showCampaignStatistics: Show Campaign Statistics
 
-rpt\_click\_overview: Report Campaign Clicks
+showMultipleCampaginStatistics: Show Multiple Campaign Statistics
 
-rpt\_clicked\_on: Report Subscriber Clicks
+reportCampaignClicks: Report Campaign Clicks
 
-rpt\_daily\_stats: Report Daily Statistics
+reportSubscriberClicks: Report Subscriber Clicks
 
-rpt\_sub\_by\_update\_datetime: Report Subscriber by Update
+reportDailyStatistics: Report Daily Statistics
 
-rpt\_subscriber\_events: Report Subscriber Events
+reportBrowserInfo: Report Browser Info
 
-rpt\_tracked\_events: Report Tracked Events
+reportBounceStatistics: Report Bounce Statistics
 
-rpt\_tracked\_events\_by\_campaign: Report Tracked Events by Campaign
+reportTrackedEvents: Report Tracked Events
 
-rpt\_unsubscribe: Report Unsubscribes
+reportTrackedEventsByCampaign: Report Tracked Events by Campaign
+
+showUserEvents: Show User Events
+
+reportSubscriberEvents: Report Subscriber Events
+
+reportUnsubscribes: Report Unsubscribes
+
+showOptouts: Show Optouts
+
+showGlobalOptouts: Show Global Optouts
+
+showHardBounces: Show Hard Bounces
+
+showSoftBounces: Show Soft Bounces
+
+showBlockBounces: Show Block Bounces
+
+showComplaints: Show Complaints
+
+reportSubscriberByUpdate: Report Subscriber by Update
+
+reportSubscribersInList: Report Subscribers in List
+
+
+###API Issues
+
+These commands do not return well formed XML:
+
+
+These commands do not properly return a FAILURE (when test returns no results):
+findinlist
+find
+
+Using API version 8.4.0 causes command 'detail' to return incomplete XML
+
+Executing command subandsend sends email and adds subscriber but doesn't seem to add to a list.

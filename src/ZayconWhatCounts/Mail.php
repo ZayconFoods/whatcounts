@@ -26,7 +26,7 @@ class Mail
     private $campaign_name;
     private $virtual_mta;
     private $first_name;
-    private $duplicate;
+    private $duplicate = FALSE;
     private $ignore_optout = FALSE;
     private $character_encoding;
     private $data;
@@ -304,7 +304,7 @@ class Mail
     /**
      * @return mixed
      */
-    public function getDuplicate()
+    public function isDuplicate()
     {
         return $this->duplicate;
     }
@@ -315,7 +315,7 @@ class Mail
      */
     public function setDuplicate($duplicate)
     {
-        $this->duplicate = $duplicate;
+        $this->duplicate = ($duplicate == 1 || $duplicate == 'Y' || $duplicate === TRUE) ? TRUE : FALSE;
         return $this;
     }
 
