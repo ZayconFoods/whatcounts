@@ -14,7 +14,11 @@ try
 	$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
 	$realm = $whatcounts->getRealmSettings();
-	var_dump($realm);
+	if (class_exists('Kint')) {
+		Kint::dump($realm);
+	} else {
+		var_dump($realm);
+	}
 }
 catch ( ZayconWhatCounts\Exception $e )
 {

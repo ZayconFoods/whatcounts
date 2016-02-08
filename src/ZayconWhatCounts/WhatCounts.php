@@ -581,19 +581,20 @@
 			$subscriber_data = $xml->subscriber;
 
 			$subscriber = new Subscriber;
-			$subscriber->setSubscriberId((int)$subscriber_data->subscriber_id);
-			$subscriber->setEmail((string)$subscriber_data->email);
-			$subscriber->setFirstName((string)$subscriber_data->first);
-			$subscriber->setLastName((string)$subscriber_data->last);
-			$subscriber->setCompany((string)$subscriber_data->company);
-			$subscriber->setAddress1((string)$subscriber_data->address_1);
-			$subscriber->setAddress2((string)$subscriber_data->address_2);
-			$subscriber->setCity((string)$subscriber_data->city);
-			$subscriber->setState((string)$subscriber_data->state);
-			$subscriber->setZip((string)$subscriber_data->zip);
-			$subscriber->setCountry((string)$subscriber_data->country);
-			$subscriber->setPhone((string)$subscriber_data->phone);
-			$subscriber->setFax((string)$subscriber_data->fax);
+			$subscriber
+				->setSubscriberId((int)$subscriber_data->subscriber_id)
+				->setEmail((string)$subscriber_data->email)
+				->setFirstName((string)$subscriber_data->first)
+				->setLastName((string)$subscriber_data->last)
+				->setCompany((string)$subscriber_data->company)
+				->setAddress1((string)$subscriber_data->address_1)
+				->setAddress2((string)$subscriber_data->address_2)
+				->setCity((string)$subscriber_data->city)
+				->setState((string)$subscriber_data->state)
+				->setZip((string)$subscriber_data->zip)
+				->setCountry((string)$subscriber_data->country)
+				->setPhone((string)$subscriber_data->phone)
+				->setFax((string)$subscriber_data->fax);
 
 			$list_ids = (array)explode(",", $subscriber_data->lists);
 			$subscriber_lists = array();
@@ -601,12 +602,12 @@
 
 			foreach ($list_ids as $list_id) {
 				$subscriber_list = New SubscriberList;
-				$subscriber_list->setListId((int)$list_id);
-				$subscriber_list->setCreatedDate($subscription_details->{'list_' . $list_id}->created_date);
-				$subscriber_list->setLastSent($subscription_details->{'list_' . $list_id}->last_sent);
-				$subscriber_list->setSentFlag($subscription_details->{'list_' . $list_id}->sent_flag);
-				$subscriber_list->setFormat($subscription_details->{'list_' . $list_id}->format);
-
+				$subscriber_list
+					->setListId((int)$list_id)
+					->setCreatedDate(date_create_from_format('d/m/y h:i A', $subscription_details->{'list_' . $list_id}->created_date))
+					->setLastSent(date_create_from_format('d/m/y h:i A', $subscription_details->{'list_' . $list_id}->last_sent))
+					->setSentFlag($subscription_details->{'list_' . $list_id}->sent_flag)
+					->setFormat($subscription_details->{'list_' . $list_id}->format);
 				$subscriber_lists[] = $subscriber_list;
 			}
 			$subscriber->setLists($subscriber_lists);
@@ -1402,7 +1403,6 @@
 			return $social_posts;
 		}
 
-
 		/**
 		 * @param Mail $message
 		 *
@@ -1686,11 +1686,12 @@
 		}
 
 		/**
-		 * @todo Write function
-		 * @todo Auto-document function
-		 * @todo Create test in examples/
+		 * @param Subscriber $subscriber
 		 *
-		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969849
+		 * @return array
+		 * @throws Exception
+		 *
+ 		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969849
 		 */
 		public function showUserEvents(Subscriber $subscriber)
 		{
@@ -1710,7 +1711,7 @@
 					->setEventId((int)$reportItem{'Event ID'})
 					->setListName((string)$reportItem{'List'})
 					->setListId((int)$reportItem{'List ID'})
-					->setDate((string)$reportItem{'Date'});
+					->setDate(date_create_from_format('d/m/y h:i A', $reportItem{'Date'}));
 				$reports[] = $report;
 			}
 
@@ -1735,7 +1736,20 @@
 			);
 			$xml = $this->call('rpt_subscriber_events', $form_data);
 
-			return $xml;
+			$reports = array();
+
+			foreach ($xml->Data as $reportItem) {
+				$report = new Report;
+				$report
+					->setEventName((string)$reportItem->event)
+					->setEventId((int)$reportItem->event_id)
+					->setListName((string)$reportItem->list)
+					->setListId((int)$reportItem->list_id)
+					->setDate(date_create_from_format('d/m/y h:i A', $reportItem->date));
+				$reports[] = $report;
+			}
+
+			return $reports;
 		}
 
 		/**
