@@ -20,9 +20,17 @@
         $subscriber->setListId(12);
 
         $unsubscriber = $whatcounts->unsubscribe($subscriber, $subscriber->getListId(), FALSE);
-        var_dump($unsubscriber);
+	    if (class_exists('Kint')) {
+		    Kint::dump($unsubscriber);
+	    } else {
+		    var_dump($unsubscriber);
+	    }
     }
     catch ( ZayconWhatCounts\Exception $e )
     {
-        var_dump( $e );
+        if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
     }

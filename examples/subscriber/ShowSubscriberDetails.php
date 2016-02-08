@@ -1,24 +1,32 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marksimonds
- * Date: 1/25/16
- * Time: 4:13 PM
- */
+	/**
+	 * Created by PhpStorm.
+	 * User: marksimonds
+	 * Date: 1/25/16
+	 * Time: 4:13 PM
+	 */
 
-require_once('../config.php');
+	require_once('../config.php');
 
-try
-{
-    /* initialize whatcounts */
-    $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
+	try
+	{
+	    /* initialize whatcounts */
+	    $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-    $subscriber_id = 142975;
+	    $subscriber_id = 142975;
 
-    $subscriber = $whatcounts->showSubscriber($subscriber_id);
-    var_dump($subscriber);
-}
-catch ( ZayconWhatCounts\Exception $e )
-{
-    var_dump( $e );
-}
+	    $subscriber = $whatcounts->showSubscriber($subscriber_id);
+		if (class_exists('Kint')) {
+			Kint::dump($subscriber);
+		} else {
+			var_dump($subscriber);
+		}
+	}
+	catch ( ZayconWhatCounts\Exception $e )
+	{
+	    if (class_exists('Kint')) {
+				Kint::dump($e);
+			} else {
+				var_dump($e);
+			}
+	}

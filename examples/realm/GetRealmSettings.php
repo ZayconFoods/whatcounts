@@ -18,5 +18,9 @@ try
 }
 catch ( ZayconWhatCounts\Exception $e )
 {
-	var_dump( $e );
+	if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
 }

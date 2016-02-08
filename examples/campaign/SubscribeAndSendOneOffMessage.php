@@ -34,9 +34,17 @@
 		$message->setData('customLastname,customSalutation^Simonds,Mister');
 
 		$output = $whatcounts->subscribeAndSendOneOffMessage($message);
-		var_dump($output);
+		if (class_exists('Kint')) {
+			Kint::dump($output);
+		} else {
+			var_dump($output);
+		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )
 	{
-		var_dump( $e );
+		if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
 	}

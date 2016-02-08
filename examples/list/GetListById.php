@@ -14,9 +14,17 @@ try
     $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
     $list = $whatcounts->getListById(5);
-    var_dump($list);
+	if (class_exists('Kint')) {
+		Kint::dump($list);
+	} else {
+		var_dump($list);
+	}
 }
 catch ( ZayconWhatCounts\Exception $e )
 {
-    var_dump( $e );
+    if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
 }

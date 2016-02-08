@@ -17,9 +17,17 @@
 		$subscriber = $whatcounts->showSubscriber($subscriber_id);
 
 		$updated_subscriber = $whatcounts->addSubscriberToLifecycleCampaign($subscriber, 'test_automation_campaign');
-		var_dump($updated_subscriber);
+		if (class_exists('Kint')) {
+			Kint::dump($updated_subscriber);
+		} else {
+			var_dump($updated_subscriber);
+		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )
 	{
-		var_dump( $e );
+		if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
 	}

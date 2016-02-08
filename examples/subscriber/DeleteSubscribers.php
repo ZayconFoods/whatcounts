@@ -19,10 +19,18 @@
 		];
 
 		$deleted_subscribers = $whatcounts->deleteSubscribers($subscriber_emails);
-		var_dump($deleted_subscribers);
+		if (class_exists('Kint')) {
+			Kint::dump($deleted_subscribers);
+		} else {
+			var_dump($deleted_subscribers);
+		}
 
 	}
 	catch ( ZayconWhatCounts\Exception $e )
 	{
-		var_dump( $e );
+		if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
 	}

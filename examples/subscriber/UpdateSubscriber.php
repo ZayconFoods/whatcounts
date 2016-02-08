@@ -23,9 +23,17 @@
 		$subscriber->setLastName("SimondsUpdatedAgainAndAgain");
 
 		$updated_subscriber = $whatcounts->updateSubscriber($subscriber);
-		var_dump($updated_subscriber);
+		if (class_exists('Kint')) {
+			Kint::dump($updated_subscriber);
+		} else {
+			var_dump($updated_subscriber);
+		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )
 	{
-		var_dump( $e );
+		if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
 	}

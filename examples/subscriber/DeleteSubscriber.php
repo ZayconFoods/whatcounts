@@ -17,9 +17,17 @@
 		$subscriber = $whatcounts->showSubscriber($subscriber_id);
 
 		$deleted_subscriber = $whatcounts->deleteSubscriber($subscriber);
-		var_dump($deleted_subscriber);
+		if (class_exists('Kint')) {
+			Kint::dump($deleted_subscriber);
+		} else {
+			var_dump($deleted_subscriber);
+		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )
 	{
-		var_dump( $e );
+		if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
 	}

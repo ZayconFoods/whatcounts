@@ -18,9 +18,17 @@ try
     $list->setListName('API Test (another update)');
 
     $updated_list = $whatcounts->updateList($list);
-    var_dump($updated_list);
+	if (class_exists('Kint')) {
+		Kint::dump($updated_list);
+	} else {
+		var_dump($updated_list);
+	}
 }
 catch ( ZayconWhatCounts\Exception $e )
 {
-    var_dump( $e );
+    if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
 }

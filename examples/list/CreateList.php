@@ -24,9 +24,17 @@ try
     $list->setTrackOpens(true);
 
     $new_list = $whatcounts->createList($list);
-    var_dump($new_list);
+	if (class_exists('Kint')) {
+		Kint::dump($new_list);
+	} else {
+		var_dump($new_list);
+	}
 }
 catch ( ZayconWhatCounts\Exception $e )
 {
-    var_dump( $e );
+    if (class_exists('Kint')) {
+		Kint::dump($e);
+	} else {
+		var_dump($e);
+	}
 }

@@ -17,9 +17,17 @@
 		$subscriber = $whatcounts->showSubscriber($subscriber_id);
 
 		$whatcounts->changeEmailAddress($subscriber, "marksimondsupdated@gmail.com");
-		var_dump($subscriber);
+		if (class_exists('Kint')) {
+			Kint::dump($subscriber);
+		} else {
+			var_dump($subscriber);
+		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )
 	{
-		var_dump( $e );
+		if (class_exists('Kint')) {
+			Kint::dump($e);
+		} else {
+			var_dump($e);
+		}
 	}

@@ -28,13 +28,13 @@
 		private $password;
 		private $version;
 
-
 		/**
 		 * WhatCounts constructor.
 		 *
 		 * @param null $realm
 		 * @param null $password
 		 * @param null $url
+		 * @param null $version
 		 */
 		public function __construct($realm = NULL, $password = NULL, $url = NULL, $version = NULL)
 		{
@@ -194,9 +194,12 @@
 				}
 
 				if ((int)substr_compare($body, "<data>", 0, 6, 1) == 0) return new \SimpleXMLElement($body);
+				if ((int)substr_compare($body, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>", 0, 38, 1) == 0) return new \SimpleXMLElement($body);
 
 				return $body;
 			}
+
+			return FALSE;
 		}
 
 		/**
@@ -357,7 +360,7 @@
 				'track_opens'  => $list->isTrackOpens(),
 				'folder_id'    => $list->getFolderId()
 			);
-			$data = $this->call('createlist', $form_data);
+			$this->call('createlist', $form_data);
 
 			return TRUE;
 		}
@@ -385,7 +388,7 @@
 				'track_opens'  => $list->isTrackOpens(),
 				'folder_id'    => $list->getFolderId()
 			);
-			$data = $this->call('updatelist', $form_data);
+			$this->call('updatelist', $form_data);
 
 			return TRUE;
 		}
@@ -476,8 +479,8 @@
 			$form_data = array(
 				'list_id'               => $subscriber->getListId(),
 				'format'                => $subscriber->getFormat(),
-				'force_sub'             => $subscriber->getForceSub(),
-				'override_confirmation' => $subscriber->getOverrideConfirmation(),
+				'force_sub'             => $subscriber->isForceSub(),
+				'override_confirmation' => $subscriber->isOverrideConfirmation(),
 				'data'                  => 'email,first,last,address_1,address_2,city,state,zip,country,phone,fax,company^'
 					. $subscriber->getEmail() . ','
 					. $subscriber->getFirstName() . ','
@@ -658,7 +661,7 @@
 				'email'     => $subscriber->getEmail(),
 				'email_new' => $new_email
 			);
-			$xml = $this->call('change', $form_data);
+			$this->call('change', $form_data);
 
 			$subscriber->setEmail($new_email);
 		}
@@ -705,6 +708,7 @@
 
 			foreach ($csv->data as $ruleItem) {
 				$rule = new SegmentationRule;
+				$rule->setListId($ruleItem->list_id);
 				$rules[] = $rule;
 			}
 
@@ -1407,7 +1411,8 @@
 		 *
 		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969749
 		 */
-		public function sendOneOffMessage(Mail $message) {
+		public function sendOneOffMessage(Mail $message)
+		{
 			$form_data = array(
 				'list_id' => $message->getListId(),
 				'from' => $message->getFromAddress(),
@@ -1687,25 +1692,48 @@
 		 *
 		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969849
 		 */
-		public function showUserEvents()
+		public function showUserEvents(Subscriber $subscriber)
 		{
-			$form_data = array();
-			$xml = $this->call('show_user_events', $form_data);
+			$form_data = array(
+				'subscriber_id' => $subscriber->getSubscriberId(),
+				'headers' => 1
+			);
+			$data = $this->call('show_user_events', $form_data, 'csv');
+			$csv = new \parseCSV($data);
 
-			return $xml;
+			$reports = array();
+
+			foreach ($csv->data as $reportItem) {
+				$report = new Report;
+				$report
+					->setEventName((string)$reportItem{'Event'})
+					->setEventId((int)$reportItem{'Event ID'})
+					->setListName((string)$reportItem{'List'})
+					->setListId((int)$reportItem{'List ID'})
+					->setDate((string)$reportItem{'Date'});
+				$reports[] = $report;
+			}
+
+			return $reports;
 		}
 
 		/**
-		 * @todo Write function
-		 * @todo Auto-document function
-		 * @todo Create test in examples/
+		 * @param Subscriber $subscriber
+		 * @param null $event_type
+		 *
+		 * @return array|\SimpleXMLElement|string
+		 * @throws Exception
 		 *
 		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670115
 		 */
-		public function reportSubscriberEvents()
+		public function reportSubscriberEvents(Subscriber $subscriber, $event_type = NULL)
 		{
-			$form_data = array();
-			$xml = $this->call('', $form_data);
+			$form_data = array(
+				'subscriber_id' => $subscriber->getSubscriberId(),
+				'event_type' => $event_type,
+
+			);
+			$xml = $this->call('rpt_subscriber_events', $form_data);
 
 			return $xml;
 		}
