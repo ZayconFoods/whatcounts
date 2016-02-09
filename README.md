@@ -51,6 +51,13 @@ sendOneOffMessage: Send One-Off Message
 subscribeAndSendOneOffMessage: Subscribe and Send One-Off Message
 
 
+####Reporting
+
+showUserEvents: Show User Events
+
+reportSubscriberEvents: Report Subscriber Events
+
+
 ----
 ##@todo
 
@@ -192,10 +199,6 @@ reportTrackedEvents: Report Tracked Events
 
 reportTrackedEventsByCampaign: Report Tracked Events by Campaign
 
-showUserEvents: Show User Events
-
-reportSubscriberEvents: Report Subscriber Events
-
 reportUnsubscribes: Report Unsubscribes
 
 showOptouts: Show Optouts
@@ -218,7 +221,11 @@ reportSubscribersInList: Report Subscribers in List
 ###API Issues
 
 These commands do not return well formed XML:
-
+showLists
+showSegmentationRules
+showTemplates
+showArticles
+showUserEvents
 
 These commands do not properly return a FAILURE (when test returns no results):
 findinlist
