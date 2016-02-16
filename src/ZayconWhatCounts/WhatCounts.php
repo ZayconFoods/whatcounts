@@ -1753,46 +1753,60 @@
 		}
 
 		/**
-		 * @todo Write function
-		 * @todo Auto-document function
-		 * @todo Create test in examples/
+		 * @param null $list_id
+		 * @param null $campaign_id
+		 *
+		 * @return array|\SimpleXMLElement|string
+		 * @throws Exception
 		 *
 		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670125
 		 */
-		public function reportUnsubscribes()
+		public function reportUnsubscribes($list_id = NULL, $campaign_id = NULL)
 		{
-			$form_data = array();
-			$xml = $this->call('', $form_data);
+			$form_data = array(
+				'list_id' => $list_id,
+				'campaign_id' => $campaign_id
+			);
+			$xml = $this->call('rpt_unsubscribe', $form_data);
 
 			return $xml;
 		}
 
 		/**
-		 * @todo Write function
-		 * @todo Auto-document function
-		 * @todo Create test in examples/
+		 * @param $list_id
+		 * @param int $days
+		 *
+		 * @return array|\SimpleXMLElement|string
+		 * @throws Exception
 		 *
 		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204670135
 		 */
-		public function showOptouts()
+
+		public function showOptouts($list_id, $days = 30)
 		{
-			$form_data = array();
-			$xml = $this->call('', $form_data);
+			$form_data = array(
+				'list_id' => $list_id,
+				'days' => $days
+			);
+			$xml = $this->call('show_optout', $form_data);
 
 			return $xml;
 		}
 
 		/**
-		 * @todo Write function
-		 * @todo Auto-document function
-		 * @todo Create test in examples/
+		 * @param int $days
+		 *
+		 * @return array|\SimpleXMLElement|string
+		 * @throws Exception
 		 *
 		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969859
 		 */
-		public function showGlobalOptouts()
+		public function showGlobalOptouts($days = 30)
 		{
-			$form_data = array();
-			$xml = $this->call('', $form_data);
+			$form_data = array(
+				'days' => $days
+			);
+			$xml = $this->call('show_optglobal', $form_data);
 
 			return $xml;
 		}

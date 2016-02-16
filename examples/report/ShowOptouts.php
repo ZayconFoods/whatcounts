@@ -13,7 +13,10 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->showOptouts();
+		$list_id = 13;
+		$days = 30;
+
+		$output = $whatcounts->showOptouts($list_id, $days);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

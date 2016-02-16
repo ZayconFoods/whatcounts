@@ -13,7 +13,7 @@
 	    /* initialize whatcounts */
 	    $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-	    $subscriber_id = 142975;
+	    $subscriber_id = 142971;
 
 	    $subscriber = $whatcounts->showSubscriber($subscriber_id);
 		if (class_exists('Kint')) {

@@ -13,7 +13,8 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->reportUnsubscribes();
+		$list_id = 13;
+		$output = $whatcounts->reportUnsubscribes($list_id);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {
