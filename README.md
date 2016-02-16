@@ -68,13 +68,14 @@ $list = $whatcounts->getListByName($list_name);
 
 ```php
 $list = new ZayconWhatCounts\MailingList;
-$list->setListName('API Test');
-$list->setDescription('This is a test list');
-$list->setFromAddress('from@example.com');
-$list->setReplyToAddress('reply-to@example.com');
-$list->setBounceAddress('bounce@example.com');
-$list->setTrackClicks(true);
-$list->setTrackOpens(true);
+$list
+	->setListName('API Test');
+	->setDescription('This is a test list');
+	->setFromAddress('from@example.com');
+	->setReplyToAddress('reply-to@example.com');
+	->setBounceAddress('bounce@example.com');
+	->setTrackClicks(true);
+	->setTrackOpens(true);
 
 $new_list = $whatcounts->createList($list);
 ```
@@ -95,8 +96,9 @@ $updated_list = $whatcounts->updateList($list);
 
 ```php
 $subscriber = new ZayconWhatCounts\Subscriber;
-$subscriber->setFirstName("Joe");
-$subscriber->setLastName("Smith");
+$subscriber
+	->setFirstName("Joe");
+	->setLastName("Smith");
 
 $subscribers = $whatcounts->findSubscribers($subscriber);
 ```
@@ -107,9 +109,10 @@ $subscribers = $whatcounts->findSubscribers($subscriber);
 $list_id = 10;
 
 $subscriber = new ZayconWhatCounts\Subscriber;
-$subscriber->setFirstName("Joe");
-$subscriber->setLastName("Smith");
-$subscriber->setEmail("joe@example.com");
+$subscriber
+	->setFirstName("Joe");
+	->setLastName("Smith");
+	->setEmail("joe@example.com");
 
 $subscribers = $whatcounts->findSubscriberInList($subscriber, $list_id, TRUE);
 ```
@@ -118,22 +121,23 @@ $subscribers = $whatcounts->findSubscriberInList($subscriber, $list_id, TRUE);
 
 ```php
 $subscriber = new ZayconWhatCounts\Subscriber;
-$subscriber->setFirstName("Joe");
-$subscriber->setLastName("Smith");
-$subscriber->setEmail("joe@example.com");
-$subscriber->setAddress1("1234 Main St");
-$subscriber->setAddress2("Suite 100");
-$subscriber->setCity("Spokane");
-$subscriber->setState("WA");
-$subscriber->setZip("99201");
-$subscriber->setCountry("US");
-$subscriber->setPhone("5095551212");
-$subscriber->setFax("5095551213");
-$subscriber->setCompany("Zaycon");
-$subscriber->setForceSub(false);
-$subscriber->setFormat(99);
-$subscriber->setOverrideConfirmation(false);
-$subscriber->setListId(10);
+$subscriber
+	->setFirstName("Joe");
+	->setLastName("Smith");
+	->setEmail("joe@example.com");
+	->setAddress1("1234 Main St");
+	->setAddress2("Suite 100");
+	->setCity("Spokane");
+	->setState("WA");
+	->setZip("99201");
+	->setCountry("US");
+	->setPhone("5095551212");
+	->setFax("5095551213");
+	->setCompany("Zaycon");
+	->setForceSub(false);
+	->setFormat(99);
+	->setOverrideConfirmation(false);
+	->setListId(10);
 
 $subscribers = $whatcounts->subscribe($subscriber);
 ```
@@ -142,10 +146,11 @@ $subscribers = $whatcounts->subscribe($subscriber);
 
 ```php
 $subscriber = new ZayconWhatCounts\Subscriber;
-$subscriber->setFirstName("Joe");
-$subscriber->setLastName("Smith");
-$subscriber->setEmail("joe@example.com");
-$subscriber->setListId(10);
+$subscriber
+	->setFirstName("Joe");
+	->setLastName("Smith");
+	->setEmail("joe@example.com");
+	->setListId(10);
 
 $unsubscriber = $whatcounts->unsubscribe($subscriber, $subscriber->getListId(), FALSE);
 ```
@@ -185,8 +190,9 @@ $subscriber = $whatcounts->showSubscriber($subscriber_id);
 
 $subscriber_lists = $subscriber->getLists();
 
-$subscriber->setListId($subscriber_lists[0]->getListId());
-$subscriber->setLastName("Smith Jr.");
+$subscriber
+	->setListId($subscriber_lists[0]->getListId());
+	->setLastName("Smith Jr.");
 
 $updated_subscriber = $whatcounts->updateSubscriber($subscriber);
 ```
@@ -216,24 +222,25 @@ $updated_subscriber = $whatcounts->addSubscriberToLifecycleCampaign($subscriber,
 
 ```php
 $message = new \ZayconWhatCounts\Mail();
-$message->setListId(10);
-$message->setFromAddress('marketing@example.com');
-$message->setReplyToAddress('reply-to@example.com');
-$message->setBounceAddress('bounce@example.com');
-$message->setSenderAddress(NULL);
-$message->setSendToAddress('joe@example.com');
-$message->setCcToAddress('others@example.com');
-$message->setTemplateId(3);
-$message->setBodyText('This is plain text.'); // This is usually defined in the template.
-$message->setBodyHtml('<h2>This is a test</h2>'); // This is usually defined in the template.
-$message->setSubject('Test from API'); // This is usually defined in the template.
-$message->setFormat(99);
-$message->setCampaignName(NULL);
-$message->setVirtualMta(NULL);
-$message->setDuplicate(FALSE);
-$message->setIgnoreOptout(TRUE); // Set to TRUE if sending a transactional email, which ignores any opt out.
-$message->setCharacterEncoding(NULL); // This is usually defined in the template.
-$message->setData('customLastname,customSalutation^Smith,Mr');
+$message
+	->setListId(10);
+	->setFromAddress('marketing@example.com');
+	->setReplyToAddress('reply-to@example.com');
+	->setBounceAddress('bounce@example.com');
+	->setSenderAddress(NULL);
+	->setSendToAddress('joe@example.com');
+	->setCcToAddress('others@example.com');
+	->setTemplateId(3);
+	->setBodyText('This is plain text.'); // This is usually defined in the template.
+	->setBodyHtml('<h2>This is a test</h2>'); // This is usually defined in the template.
+	->setSubject('Test from API'); // This is usually defined in the template.
+	->setFormat(99);
+	->setCampaignName(NULL);
+	->setVirtualMta(NULL);
+	->setDuplicate(FALSE);
+	->setIgnoreOptout(TRUE); // Set to TRUE if sending a transactional email, which ignores any opt out.
+	->setCharacterEncoding(NULL); // This is usually defined in the template.
+	->setData('customLastname,customSalutation^Smith,Mr');
 
 $output = $whatcounts->sendOneOffMessage($message);
 ```
@@ -242,24 +249,25 @@ $output = $whatcounts->sendOneOffMessage($message);
 
 ```php
 $message = new \ZayconWhatCounts\Mail();
-$message->setListId(10);
-$message->setFromAddress('marketing@example.com');
-$message->setReplyToAddress('reply-to@example.com');
-$message->setBounceAddress('bounce@example.com');
-$message->setSenderAddress(NULL);
-$message->setSendToAddress('joe@example.com');
-$message->setCcToAddress('others@example.com');
-$message->setTemplateId(3);
-$message->setBodyText('This is plain text.'); // This is usually defined in the template.
-$message->setBodyHtml('<h2>This is a test</h2>'); // This is usually defined in the template.
-$message->setSubject('Test from API'); // This is usually defined in the template.
-$message->setFormat(99);
-$message->setCampaignName(NULL);
-$message->setVirtualMta(NULL);
-$message->setDuplicate(FALSE);
-$message->setIgnoreOptout(TRUE); // Set to TRUE if sending a transactional email, which ignores any opt out.
-$message->setCharacterEncoding(NULL); // This is usually defined in the template.
-$message->setData('customLastname,customSalutation^Smith,Mr');
+$message
+	->setListId(10);
+	->setFromAddress('marketing@example.com');
+	->setReplyToAddress('reply-to@example.com');
+	->setBounceAddress('bounce@example.com');
+	->setSenderAddress(NULL);
+	->setSendToAddress('joe@example.com');
+	->setCcToAddress('others@example.com');
+	->setTemplateId(3);
+	->setBodyText('This is plain text.'); // This is usually defined in the template.
+	->setBodyHtml('<h2>This is a test</h2>'); // This is usually defined in the template.
+	->setSubject('Test from API'); // This is usually defined in the template.
+	->setFormat(99);
+	->setCampaignName(NULL);
+	->setVirtualMta(NULL);
+	->setDuplicate(FALSE);
+	->setIgnoreOptout(TRUE); // Set to TRUE if sending a transactional email, which ignores any opt out.
+	->setCharacterEncoding(NULL); // This is usually defined in the template.
+	->setData('customLastname,customSalutation^Smith,Mr');
 
 $output = $whatcounts->subscribeAndSendOneOffMessage($message);
 ```
