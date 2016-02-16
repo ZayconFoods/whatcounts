@@ -14,22 +14,22 @@
         $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
         $subscriber = new ZayconWhatCounts\Subscriber;
-        $subscriber->setFirstName("Mark");
-        $subscriber->setLastName("Simonds3");
-        $subscriber->setEmail("marksimond.s@gmail.com");
+        $subscriber->setFirstName("Joe");
+        $subscriber->setLastName("Smith");
+        $subscriber->setEmail("joe@example.com");
         $subscriber->setAddress1("1234 Main St");
-        $subscriber->setAddress2("Ste 100");
+        $subscriber->setAddress2("Suite 100");
         $subscriber->setCity("Spokane");
         $subscriber->setState("WA");
         $subscriber->setZip("99201");
         $subscriber->setCountry("US");
-        $subscriber->setPhone("5092306321");
-        $subscriber->setFax("5095551212");
+        $subscriber->setPhone("5095551212");
+        $subscriber->setFax("5095551213");
         $subscriber->setCompany("Zaycon");
         $subscriber->setForceSub(false);
         $subscriber->setFormat(99);
         $subscriber->setOverrideConfirmation(false);
-        $subscriber->setListId(12);
+        $subscriber->setListId(10);
 
         $subscribers = $whatcounts->subscribe($subscriber);
         if (class_exists('Kint')) {

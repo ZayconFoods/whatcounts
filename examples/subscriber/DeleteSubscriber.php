@@ -13,7 +13,7 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$subscriber_id = 142975;
+		$subscriber_id = 123456;
 		$subscriber = $whatcounts->showSubscriber($subscriber_id);
 
 		$deleted_subscriber = $whatcounts->deleteSubscriber($subscriber);

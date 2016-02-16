@@ -13,7 +13,7 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$list_id = 13;
+		$list_id = 10;
 		$days = 30;
 
 		$output = $whatcounts->showOptouts($list_id, $days);

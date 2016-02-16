@@ -1,41 +1,315 @@
-# whatcounts
-PHP API Wrapper for WhatCounts Email System
+# ZayconWhatCounts
+
+[![Latest Stable Version](https://poser.pugx.org/zaycon/taxify/v/stable)](https://packagist.org/packages/zaycon/whatcounts)
+[![Total Downloads](https://poser.pugx.org/zaycon/taxify/downloads)](https://packagist.org/packages/zaycon/whatcounts)
+[![Build Status](https://travis-ci.org/ZayconFoods/taxify.svg?branch=master)](https://travis-ci.org/ZayconFoods/whatcounts)
+[![Coverage Status](https://coveralls.io/repos/ZayconFoods/taxify/badge.svg?branch=master&service=github)](https://coveralls.io/github/ZayconFoods/whatcounts?branch=master)
+
+PHP API Wrapper for the WhatCounts HTTP API (https://support.whatcounts.com/hc/en-us/categories/200372375-API-HTTP)
+
+## Table of Contents
+* [Installation](#install)
+* [Documentation](#documentation)
+* [Todo](#todo)
+* [About](#about)
 
 ----
-##Available functions
+## <a name="install"></a>Installation
 
-####Realms
-- getRealmSettings: Get Realm Settings
+Add ZayconWhatCounts to your `composer.json` file. If you are not using [Composer](http://getcomposer.org), you should be. It's an excellent way to manage dependencies in your PHP application.
 
-####Lists
-- showLists: Show Lists
-- getListById: Get List by ID
-- getListByName: Get List by Name
-- exCreateList: Create List
-- createList: Create List
-- updateList: Update List
-
-####Subscriber Management
-- findSubscribers: Find Subscriber
-- findSubscriberInList: Find Subscriber in List
-- sub: Subscribe
-- unsubscribe: Unsubscribe
-- deleteSubscriber: Delete Subscriber
-- showSubscriber: Show Subscriber Details
-- updateSubscriber: Update Subscriber
-- changeEmailAddress: Change Email Address
-- addSubscriberToLifecycleCampaign: Add Subscriber to Lifecycle Campaign
-
-####Send Mail
-- sendOneOffMessage: Send One-Off Message
-- subscribeAndSendOneOffMessage: Subscribe and Send One-Off Message
-
-####Reporting
-- showUserEvents: Show User Events
-- reportSubscriberEvents: Report Subscriber Events
+```json
+{
+  "require": {
+    "zaycon/whatcounts": "1.0.*"
+  }
+}
+```
 
 ----
-##@todo
+## <a name="documentation"></a>Documentation
+
+### Initialize Your Object
+
+```php
+$whatcounts = new ZayconWhatCounts\WhatCounts( [YOUR_API_REALM], [YOUR_API_PASSWORD] );
+```
+
+###Realms
+
+####Get Realm Settings
+```php
+$realm = $whatcounts->getRealmSettings();
+```
+
+###Lists
+
+####Show Lists
+
+```php
+$lists = $whatcounts->showLists();
+```
+
+####Get List by ID
+
+```php
+$list_id = 10;
+$list = $whatcounts->getListById($list_id);
+```
+
+####Get List by Name
+
+```php
+$list_name = "Marketing List";
+$list = $whatcounts->getListByName($list_name);
+```
+
+####Create List
+
+```php
+$list = new ZayconWhatCounts\MailingList;
+$list->setListName('API Test');
+$list->setDescription('This is a test list');
+$list->setFromAddress('from@example.com');
+$list->setReplyToAddress('reply-to@example.com');
+$list->setBounceAddress('bounce@example.com');
+$list->setTrackClicks(true);
+$list->setTrackOpens(true);
+
+$new_list = $whatcounts->createList($list);
+```
+
+####Update List
+
+```php
+$list_id = 10;
+$list = $whatcounts->showList($list_id);
+$list->setListName('API Test');
+
+$updated_list = $whatcounts->updateList($list);
+```
+
+
+###Subscriber Management
+####Find Subscriber
+
+```php
+$subscriber = new ZayconWhatCounts\Subscriber;
+$subscriber->setFirstName("Joe");
+$subscriber->setLastName("Smith");
+
+$subscribers = $whatcounts->findSubscribers($subscriber);
+```
+
+####Find Subscriber in List
+
+```php
+$list_id = 10;
+
+$subscriber = new ZayconWhatCounts\Subscriber;
+$subscriber->setFirstName("Joe");
+$subscriber->setLastName("Smith");
+$subscriber->setEmail("joe@example.com");
+
+$subscribers = $whatcounts->findSubscriberInList($subscriber, $list_id, TRUE);
+```
+
+####Subscribe
+
+```php
+$subscriber = new ZayconWhatCounts\Subscriber;
+$subscriber->setFirstName("Joe");
+$subscriber->setLastName("Smith");
+$subscriber->setEmail("joe@example.com");
+$subscriber->setAddress1("1234 Main St");
+$subscriber->setAddress2("Suite 100");
+$subscriber->setCity("Spokane");
+$subscriber->setState("WA");
+$subscriber->setZip("99201");
+$subscriber->setCountry("US");
+$subscriber->setPhone("5095551212");
+$subscriber->setFax("5095551213");
+$subscriber->setCompany("Zaycon");
+$subscriber->setForceSub(false);
+$subscriber->setFormat(99);
+$subscriber->setOverrideConfirmation(false);
+$subscriber->setListId(10);
+
+$subscribers = $whatcounts->subscribe($subscriber);
+```
+
+####Unsubscribe
+
+```php
+$subscriber = new ZayconWhatCounts\Subscriber;
+$subscriber->setFirstName("Joe");
+$subscriber->setLastName("Smith");
+$subscriber->setEmail("joe@example.com");
+$subscriber->setListId(10);
+
+$unsubscriber = $whatcounts->unsubscribe($subscriber, $subscriber->getListId(), FALSE);
+```
+
+####Delete Subscriber
+
+```php
+$subscriber_id = 123456;
+$subscriber = $whatcounts->showSubscriber($subscriber_id);
+
+$deleted_subscriber = $whatcounts->deleteSubscriber($subscriber);
+```
+
+####Delete Subscribers
+
+```php
+$subscriber_emails = [
+	'marc.freeman@example.com',
+	'amelia.lowe@example.com'
+];
+
+$deleted_subscribers = $whatcounts->deleteSubscribers($subscriber_emails);
+```
+
+####Show Subscriber Details
+
+```php
+$subscriber_id = 123456;
+$subscriber = $whatcounts->showSubscriber($subscriber_id);
+```
+
+####Update Subscriber
+
+```php
+$subscriber_id = 123456;
+$subscriber = $whatcounts->showSubscriber($subscriber_id);
+
+$subscriber_lists = $subscriber->getLists();
+
+$subscriber->setListId($subscriber_lists[0]->getListId());
+$subscriber->setLastName("Smith Jr.");
+
+$updated_subscriber = $whatcounts->updateSubscriber($subscriber);
+```
+
+####Change Email Address
+
+```php
+$subscriber_id = 123456;
+$subscriber = $whatcounts->showSubscriber($subscriber_id);
+$whatcounts->changeEmailAddress($subscriber, "joejr@example.com");
+```
+
+####Add Subscriber to Lifecycle Campaign
+
+```php
+$campaign_name = "test_automation_campaign";
+		
+$subscriber_id = 123456;
+$subscriber = $whatcounts->showSubscriber($subscriber_id);
+
+$updated_subscriber = $whatcounts->addSubscriberToLifecycleCampaign($subscriber, $campaign_name);
+```
+
+
+###Send Mail
+####Send One-Off Message
+
+```php
+$message = new \ZayconWhatCounts\Mail();
+$message->setListId(10);
+$message->setFromAddress('marketing@example.com');
+$message->setReplyToAddress('reply-to@example.com');
+$message->setBounceAddress('bounce@example.com');
+$message->setSenderAddress(NULL);
+$message->setSendToAddress('joe@example.com');
+$message->setCcToAddress('others@example.com');
+$message->setTemplateId(3);
+$message->setBodyText('This is plain text.'); // This is usually defined in the template.
+$message->setBodyHtml('<h2>This is a test</h2>'); // This is usually defined in the template.
+$message->setSubject('Test from API'); // This is usually defined in the template.
+$message->setFormat(99);
+$message->setCampaignName(NULL);
+$message->setVirtualMta(NULL);
+$message->setDuplicate(FALSE);
+$message->setIgnoreOptout(TRUE); // Set to TRUE if sending a transactional email, which ignores any opt out.
+$message->setCharacterEncoding(NULL); // This is usually defined in the template.
+$message->setData('customLastname,customSalutation^Smith,Mr');
+
+$output = $whatcounts->sendOneOffMessage($message);
+```
+
+####Subscribe and Send One-Off Message
+
+```php
+$message = new \ZayconWhatCounts\Mail();
+$message->setListId(10);
+$message->setFromAddress('marketing@example.com');
+$message->setReplyToAddress('reply-to@example.com');
+$message->setBounceAddress('bounce@example.com');
+$message->setSenderAddress(NULL);
+$message->setSendToAddress('joe@example.com');
+$message->setCcToAddress('others@example.com');
+$message->setTemplateId(3);
+$message->setBodyText('This is plain text.'); // This is usually defined in the template.
+$message->setBodyHtml('<h2>This is a test</h2>'); // This is usually defined in the template.
+$message->setSubject('Test from API'); // This is usually defined in the template.
+$message->setFormat(99);
+$message->setCampaignName(NULL);
+$message->setVirtualMta(NULL);
+$message->setDuplicate(FALSE);
+$message->setIgnoreOptout(TRUE); // Set to TRUE if sending a transactional email, which ignores any opt out.
+$message->setCharacterEncoding(NULL); // This is usually defined in the template.
+$message->setData('customLastname,customSalutation^Smith,Mr');
+
+$output = $whatcounts->subscribeAndSendOneOffMessage($message);
+```
+
+
+###Reporting
+####Show User Events
+
+```php
+$subscriber = $whatcounts->showSubscriber(123456);
+
+$output = $whatcounts->showUserEvents($subscriber);
+```
+
+####Report Subscriber Events
+
+```php
+$subscriber = $whatcounts->showSubscriber(123456);
+
+$output = $whatcounts->reportSubscriberEvents($subscriber);
+```
+
+####Report Unsubscribes
+
+```php
+$list_id = 10;
+$output = $whatcounts->reportUnsubscribes($list_id);
+```
+
+####Show Optouts
+
+```php
+$list_id = 10;
+$days = 30;
+
+$output = $whatcounts->showOptouts($list_id, $days);
+```
+
+####Show Global Optouts
+
+```php
+$days = 30;
+
+$output = $whatcounts->showGlobalOptouts($days);
+```
+
+
+
+----
+## <a name="todo"></a>@todo
 
 
 ####A/B Testing
@@ -114,9 +388,6 @@ No API documentation exists for these commands (https://support.whatcounts.com/h
 - reportBounceStatistics: Report Bounce Statistics
 - reportTrackedEvents: Report Tracked Events
 - reportTrackedEventsByCampaign: Report Tracked Events by Campaign
-- reportUnsubscribes: Report Unsubscribes
-- showOptouts: Show Optouts
-- showGlobalOptouts: Show Global Optouts
 - showHardBounces: Show Hard Bounces
 - showSoftBounces: Show Soft Bounces
 - showBlockBounces: Show Block Bounces
@@ -143,3 +414,9 @@ These commands do not properly return a FAILURE (when test returns no results):
 Using API version 8.4.0 causes command 'detail' to return incomplete XML
 
 Executing command subandsend sends email and adds subscriber but doesn't seem to add to a list.
+
+----
+## <a name="about"></a>About
+Developed by [Zaycon Fresh](https://www.zayconfresh.com)
+
+

@@ -13,8 +13,8 @@ try
     /* initialize whatcounts */
     $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-    $list = $whatcounts->showList(10);
-
+	$list_id = 10;
+    $list = $whatcounts->showList($list_id);
     $list->setListName('API Test (another update)');
 
     $updated_list = $whatcounts->updateList($list);

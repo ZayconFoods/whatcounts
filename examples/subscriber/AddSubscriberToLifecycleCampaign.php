@@ -13,10 +13,12 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$subscriber_id = 142971;
+		$campaign_name = "test_automation_campaign";
+
+		$subscriber_id = 123456;
 		$subscriber = $whatcounts->showSubscriber($subscriber_id);
 
-		$updated_subscriber = $whatcounts->addSubscriberToLifecycleCampaign($subscriber, 'test_automation_campaign');
+		$updated_subscriber = $whatcounts->addSubscriberToLifecycleCampaign($subscriber, $campaign_name);
 		if (class_exists('Kint')) {
 			Kint::dump($updated_subscriber);
 		} else {

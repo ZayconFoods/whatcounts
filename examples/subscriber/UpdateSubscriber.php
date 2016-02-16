@@ -13,14 +13,13 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$subscriber_id = 92969;
+		$subscriber_id = 123456;
 		$subscriber = $whatcounts->showSubscriber($subscriber_id);
-		//var_dump($subscriber);
 
 		$subscriber_lists = $subscriber->getLists();
 
 		$subscriber->setListId($subscriber_lists[0]->getListId());
-		$subscriber->setLastName("SimondsUpdatedAgainAndAgain");
+		$subscriber->setLastName("Smith Jr.");
 
 		$updated_subscriber = $whatcounts->updateSubscriber($subscriber);
 		if (class_exists('Kint')) {

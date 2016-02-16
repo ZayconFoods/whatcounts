@@ -13,12 +13,14 @@
 	    /* initialize whatcounts */
 	    $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-	    $subscriber = new ZayconWhatCounts\Subscriber;
-	    $subscriber->setFirstName("Mark");
-	    $subscriber->setLastName("Simonds");
-	    $subscriber->setEmail("mark@zayconfoods.com");
+		$list_id = 10;
 
-	    $subscribers = $whatcounts->findSubscriberInList($subscriber, 12, TRUE);
+	    $subscriber = new ZayconWhatCounts\Subscriber;
+		$subscriber->setFirstName("Joe");
+		$subscriber->setLastName("Smith");
+		$subscriber->setEmail("joe@example.com");
+
+	    $subscribers = $whatcounts->findSubscriberInList($subscriber, $list_id, TRUE);
 		if (class_exists('Kint')) {
 			Kint::dump($subscribers);
 		} else {

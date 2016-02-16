@@ -13,11 +13,11 @@
         /* initialize whatcounts */
         $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-        $subscriber = new ZayconWhatCounts\Subscriber;
-        $subscriber->setFirstName("Mark");
-        $subscriber->setLastName("Simonds3");
-        $subscriber->setEmail("marksimond.s@gmail.com");
-        $subscriber->setListId(12);
+	    $subscriber = new ZayconWhatCounts\Subscriber;
+	    $subscriber->setFirstName("Joe");
+	    $subscriber->setLastName("Smith");
+	    $subscriber->setEmail("joe@example.com");
+	    $subscriber->setListId(10);
 
         $unsubscriber = $whatcounts->unsubscribe($subscriber, $subscriber->getListId(), FALSE);
 	    if (class_exists('Kint')) {

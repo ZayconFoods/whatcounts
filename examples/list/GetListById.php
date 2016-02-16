@@ -13,7 +13,8 @@ try
     /* initialize whatcounts */
     $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-    $list = $whatcounts->getListById(5);
+	$list_id = 10;
+	$list = $whatcounts->getListById($list_id);
 	if (class_exists('Kint')) {
 		Kint::dump($list);
 	} else {

@@ -1,7 +1,7 @@
 
 {
   "name": "zaycon/whatcounts",
-  "description": "PHP API Wrapper for WhatCounts Email System",
+  "description": "PHP API Wrapper for the WhatCounts HTTP API",
   "version": "1.0.0",
   "homepage": "https://github.com/ZayconFoods/whatcounts",
   "license": "MIT",

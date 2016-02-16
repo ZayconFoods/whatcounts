@@ -14,8 +14,8 @@
 	    $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
 	    $subscriber = new ZayconWhatCounts\Subscriber;
-	    $subscriber->setFirstName("Mark");
-	    $subscriber->setLastName("Simonds");
+	    $subscriber->setFirstName("Joe");
+	    $subscriber->setLastName("Smith");
 
 	    $subscribers = $whatcounts->findSubscribers($subscriber);
 		if (class_exists('Kint')) {

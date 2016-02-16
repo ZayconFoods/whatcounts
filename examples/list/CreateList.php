@@ -14,14 +14,13 @@ try
     $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
     $list = new ZayconWhatCounts\MailingList;
-
-    $list->setListName('API Test');
-    $list->setDescription('This is a test list');
-    $list->setFromAddress('mark@zayconfresh.com');
-    $list->setReplyToAddress('tony@zayconfresh.com');
-    $list->setBounceAddress('ethan@zayconfresh.com');
-    $list->setTrackClicks(true);
-    $list->setTrackOpens(true);
+	$list->setListName('API Test');
+	$list->setDescription('This is a test list');
+	$list->setFromAddress('from@example.com');
+	$list->setReplyToAddress('reply-to@example.com');
+	$list->setBounceAddress('bounce@example.com');
+	$list->setTrackClicks(true);
+	$list->setTrackOpens(true);
 
     $new_list = $whatcounts->createList($list);
 	if (class_exists('Kint')) {
