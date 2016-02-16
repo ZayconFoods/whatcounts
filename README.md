@@ -1,9 +1,9 @@
 # ZayconWhatCounts
 
-[![Latest Stable Version](https://poser.pugx.org/zaycon/taxify/v/stable)](https://packagist.org/packages/zaycon/whatcounts)
-[![Total Downloads](https://poser.pugx.org/zaycon/taxify/downloads)](https://packagist.org/packages/zaycon/whatcounts)
-[![Build Status](https://travis-ci.org/ZayconFoods/taxify.svg?branch=master)](https://travis-ci.org/ZayconFoods/whatcounts)
-[![Coverage Status](https://coveralls.io/repos/ZayconFoods/taxify/badge.svg?branch=master&service=github)](https://coveralls.io/github/ZayconFoods/whatcounts?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/zaycon/whatcounts/v/stable)](https://packagist.org/packages/zaycon/whatcounts)
+[![Total Downloads](https://poser.pugx.org/zaycon/whatcounts/downloads)](https://packagist.org/packages/zaycon/whatcounts)
+[![Build Status](https://travis-ci.org/ZayconFoods/whatcounts.svg?branch=master)](https://travis-ci.org/ZayconFoods/whatcounts)
+[![Coverage Status](https://coveralls.io/repos/ZayconFoods/whatcounts/badge.svg?branch=master&service=github)](https://coveralls.io/github/ZayconFoods/whatcounts?branch=master)
 
 PHP API Wrapper for the WhatCounts HTTP API (https://support.whatcounts.com/hc/en-us/categories/200372375-API-HTTP)
 
