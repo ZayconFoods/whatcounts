@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "homepage": "https://github.com/ZayconFoods/whatcounts",
   "license": "MIT",
-  "keywords": ["Whatcounts", "whatcounts"],
+  "keywords": ["Whatcounts", "whatcounts", "WhatCounts"],
   "require": {
     "php": ">=5.3",
     "parsecsv/php-parsecsv": "0.4.5",
