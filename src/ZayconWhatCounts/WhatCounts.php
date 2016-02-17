@@ -604,8 +604,8 @@
 				$subscriber_list = New SubscriberList;
 				$subscriber_list
 					->setListId((int)$list_id)
-					->setCreatedDate(date_create_from_format('d/m/y h:i A', $subscription_details->{'list_' . $list_id}->created_date))
-					->setLastSent(date_create_from_format('d/m/y h:i A', $subscription_details->{'list_' . $list_id}->last_sent))
+					->setCreatedDate(date_create_from_format('m/d/y h:i A', $subscription_details->{'list_' . $list_id}->created_date))
+					->setLastSent(date_create_from_format('m/d/y h:i A', $subscription_details->{'list_' . $list_id}->last_sent))
 					->setSentFlag($subscription_details->{'list_' . $list_id}->sent_flag)
 					->setFormat($subscription_details->{'list_' . $list_id}->format);
 				$subscriber_lists[] = $subscriber_list;
@@ -1711,7 +1711,7 @@
 					->setEventId((int)$reportItem{'Event ID'})
 					->setListName((string)$reportItem{'List'})
 					->setListId((int)$reportItem{'List ID'})
-					->setDate(date_create_from_format('d/m/y h:i A', $reportItem{'Date'}));
+					->setDate(date_create_from_format('m/d/y h:i A', $reportItem{'Date'}));
 				$reports[] = $report;
 			}
 
@@ -1745,7 +1745,7 @@
 					->setEventId((int)$reportItem->event_id)
 					->setListName((string)$reportItem->list)
 					->setListId((int)$reportItem->list_id)
-					->setDate(date_create_from_format('d/m/y h:i A', $reportItem->date));
+					->setDate(date_create_from_format('m/d/y h:i A', $reportItem->date));
 				$reports[] = $report;
 			}
 
