@@ -13,7 +13,19 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->setSocialPostForTemplate($template);
+		$template = new ZayconWhatCounts\Template();
+		$template->setTemplateId(14);
+
+
+		$social_provider = new ZayconWhatCounts\SocialProvider();
+		$social_provider->setProviderName('twitter');
+
+
+		$social_post = new ZayconWhatCounts\SocialPost();
+		$social_post->setPost('This is a post created from the API.');
+
+
+		$output = $whatcounts->setSocialPostForTemplate($template, $social_provider, $social_post);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

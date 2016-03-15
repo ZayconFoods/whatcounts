@@ -13,11 +13,15 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->getSocialProviderById($provider_id);
+		$social_provider = new ZayconWhatCounts\SocialProvider();
+		$social_provider->setProviderId(522);
+
+		$whatcounts->getSocialProviderById($social_provider);
+
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			!Kint::dump($social_provider);
 		} else {
-			var_dump($output);
+			var_dump($social_provider);
 		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )

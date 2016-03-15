@@ -13,7 +13,24 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->launchCampaign();
+		$campaign = new ZayconWhatCounts\Campaign();
+		$campaign
+			->setListId(23)
+			->setTemplateId(35)
+			->setSubject('Test Campagin')
+			->setSeedListId(0)
+			->setSegmentationId(0)
+			->setFormat(99)
+			->setAlias('')
+			->setRss(0)
+			->setVmta('zaycon1')
+			->setAbDefinitionId(0)
+			->setDeployedByEmail('')
+			->setReturnTaskId(1)
+			->setSeedDelivery(0)
+			->setSendNotification('mark@zayconfresh.com');
+
+		$output = $whatcounts->launchCampaign($campaign);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

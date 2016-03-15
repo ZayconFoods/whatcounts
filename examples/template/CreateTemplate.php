@@ -13,11 +13,21 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->createTemplate($template);
+		$template = new ZayconWhatCounts\Template;
+		$template
+			->setFolderId(0)
+			->setName("Another Test Template")
+			->setSubject("Another Test from WhatCounts")
+			->setBodyPlain("Hello %%set salutation = \$customSalutation%%%%\$salutation%% %%set last_name = \$customLastname%%%%\$last_name%%!")
+			->setBodyHtml("<html><head><title></title></head><body><h2>Hello %%set salutation = \$customSalutation%%%%\$salutation%% %%set last_name = \$customLastname%%%%\$last_name%%!</h2></body></html>")
+			->setDescription("This is the description");
+
+		$whatcounts->createTemplate($template);
+
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			Kint::dump($template);
 		} else {
-			var_dump($output);
+			var_dump($template);
 		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )

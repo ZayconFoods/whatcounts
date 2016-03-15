@@ -8,12 +8,19 @@
 
 	require_once('../config.php');
 
+	define('TEMPLATE_TYPE_PLAIN', 1);
+	define('TEMPLATE_TYPE_HTML', 2);
+
 	try
 	{
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->previewTemplate($template);
+		$template = new ZayconWhatCounts\Template;
+		$template
+			->setName("Another Test Template");
+
+		$output = $whatcounts->previewTemplate($template, TEMPLATE_TYPE_HTML);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

@@ -20,6 +20,7 @@ class Template
     private $character_set;
     private $character_encoding;
     private $folder_id;
+    private $description;
 
     /**
      * @return mixed
@@ -184,5 +185,26 @@ class Template
         $this->folder_id = $folder_id;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     *
+     * @return Template
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 
 }

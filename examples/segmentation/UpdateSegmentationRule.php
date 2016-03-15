@@ -13,7 +13,15 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->updateSegmentationRule($rule);
+		$segmentation_rule = new ZayconWhatCounts\SegmentationRule();
+		$segmentation_rule->setId(7);
+		$segmentation_rule->setListId(14);
+		$segmentation_rule->setName('Test Segmentation Rule (updated)');
+		$segmentation_rule->setDescription('This is a test segmentation rule.');
+		$segmentation_rule->setType('adv');
+		$segmentation_rule->setRules("email='user@example.com'");
+
+		$output = $whatcounts->updateSegmentationRule($segmentation_rule);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

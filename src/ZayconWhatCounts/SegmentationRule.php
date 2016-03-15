@@ -11,11 +11,32 @@ namespace ZayconWhatCounts;
 
 class SegmentationRule
 {
+    private $id;
     private $name;
     private $type;
     private $list_id;
     private $rules;
     private $description;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     *
+     * @return SegmentationRule
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * @return mixed

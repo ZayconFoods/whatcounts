@@ -11,9 +11,10 @@
 
     class CampaignClicks
     {
-        private $url
+        private $url;
         private $total_clicks;
         private $unique_clicks;
+        private $tracking_url_id;
 
         /**
          * @return mixed
@@ -75,5 +76,24 @@
             return $this;
         }
 
+        /**
+         * @return mixed
+         */
+        public function getTrackingUrlId()
+        {
+            return $this->tracking_url_id;
+        }
+
+        /**
+         * @param mixed $tracking_url_id
+         *
+         * @return CampaignClicks
+         */
+        public function setTrackingUrlId($tracking_url_id)
+        {
+            $this->tracking_url_id = $tracking_url_id;
+
+            return $this;
+        }
 
     }

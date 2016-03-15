@@ -2,8 +2,8 @@
 	/**
 	 * Created by PhpStorm.
 	 * User: marksimonds
-	 * Date: 2/3/16
-	 * Time: 2:49 PM
+	 * Date: 3/14/16
+	 * Time: 11:51 AM
 	 */
 
 	require_once('../config.php');
@@ -13,17 +13,14 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$social_provider = new ZayconWhatCounts\SocialProvider();
-		$social_provider
-			->setUsername('marksimonds@gmail.com')
-			->setProviderName('facebook');
+		$list_id = 13;
+		$offset = 0;
 
-		$whatcounts->getSocialProviderByUserName($social_provider);
-
+		$output = $whatcounts->reportSubscribersInList($list_id, $offset);
 		if (class_exists('Kint')) {
-			!Kint::dump($social_provider);
+			!Kint::dump($output);
 		} else {
-			var_dump($social_provider);
+			var_dump($output);
 		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )

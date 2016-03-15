@@ -87,8 +87,93 @@ $list_id = 10;
 $list = $whatcounts->showList($list_id);
 $list->setListName('API Test');
 
-$updated_list = $whatcounts->updateList($list);
+$is_updated = $whatcounts->updateList($list);
 ```
+
+
+### Articles
+#### Show Articles
+```php
+$articles = $whatcounts->showArticles();
+```
+
+#### Get Article by ID
+```php
+$article = new ZayconWhatCounts\Article();
+$article->setId(5);
+
+$whatcounts->getArticleById($article);
+```
+
+#### Get Article by Name
+```php
+$article = new ZayconWhatCounts\Article();
+$article->setName('article-1');
+
+$whatcounts->getArticleByName($article);
+```
+
+#### Copy Article
+```php
+$article_name = 'article-1';
+$destination_article_name = 'article-1-copy';
+
+$destination_article_id = $whatcounts->copyArticle($article_name, $destination_article_name);
+```
+
+#### Create Article Blank
+```php
+$article = new ZayconWhatCounts\Article();
+$article
+    ->setName('blank-test');
+
+$whatcounts->createBlankArticle($article);
+```
+
+#### Create Article (not working)
+```php
+$article = new ZayconWhatCounts\Article();
+$article
+    ->setName('test')
+    ->setTitle('Test Article Title')
+    ->setDescription('Test Article Description')
+    ->setDeck('This is the actual article deck.')
+    ->setCallout('Test Article Callout')
+    ->setBody('Test Article Body')
+    ->setAuthorName('Joe Smith')
+    ->setAuthorBio('This is the bio for Joe Smith')
+    ->setAuthorEmail('joe@example.com')
+    ->setFolderId(0);
+
+$whatcounts->createArticle($article);
+```
+
+#### Update Article
+```php
+$article = new ZayconWhatCounts\Article();
+$article
+    ->setId(5)
+    ->setName('article-1')
+    ->setTitle('Test Article Title')
+    ->setDescription('Test Article Description')
+    ->setDeck('This is the actual article deck.')
+    ->setCallout('Test Article Callout')
+    ->setBody('Test Article Body')
+    ->setAuthorName('Joe Smith')
+    ->setAuthorBio('This is the bio for Joe Smith')
+    ->setAuthorEmail('joe@example.com')
+    ->setFolderId(0);
+
+$is_updated = $whatcounts->updateArticle($article);
+```
+
+#### Delete Article
+```php
+$article_name = 'article-1-copy';
+
+$is_deleted = $whatcounts->deleteArticle($article_name);
+```
+
 
 
 ###Subscriber Management
@@ -327,14 +412,7 @@ $output = $whatcounts->showGlobalOptouts($days);
 - chooseABWinner: Choose A/B Winner
 
 ####Articles
-- showArticles: Show Articles
-- getArticleById: Get Article by ID
-- getArticleByName: Get Article by Name
-- copyArticle: Copy Article
-- createBlankArticle: Create Article Blank
 - createArticle: Create Article
-- updateArticle: Update Article
-- deleteArticle: Delete Article
 
 ####Folders
 - createFolder: Create Folder
@@ -422,6 +500,12 @@ These commands do not properly return a FAILURE (when test returns no results):
 Using API version 8.4.0 causes command 'detail' to return incomplete XML
 
 Executing command subandsend sends email and adds subscriber but doesn't seem to add to a list.
+
+createarticle returns "FAILURE: cannot create article [article_name]"
+
+show_campaign_list returns track_clicks twice. One as true/false, one as yes/no.
+
+rpt_bounce_stats seems to ignore bounce_type and returns all bounce_type values.
 
 ----
 ## <a name="about"></a>About

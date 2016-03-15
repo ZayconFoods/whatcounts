@@ -13,7 +13,7 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->showArticles($article);
+		$output = $whatcounts->showArticles();
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

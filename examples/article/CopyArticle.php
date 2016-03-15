@@ -13,7 +13,10 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->copyArticle($article);
+		$article_name = 'article-1';
+		$destination_article_name = 'article-1-copy';
+
+		$output = $whatcounts->copyArticle($article_name, $destination_article_name);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

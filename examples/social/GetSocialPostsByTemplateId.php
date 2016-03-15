@@ -13,9 +13,12 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
+		$template = new ZayconWhatCounts\Template();
+		$template->setTemplateId(14);
+
 		$output = $whatcounts->getSocialPostsByTemplateId($template);
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			!Kint::dump($output);
 		} else {
 			var_dump($output);
 		}
@@ -23,7 +26,7 @@
 	catch ( ZayconWhatCounts\Exception $e )
 	{
 		if (class_exists('Kint')) {
-			Kint::dump($e);
+			!Kint::dump($e);
 		} else {
 			var_dump($e);
 		}

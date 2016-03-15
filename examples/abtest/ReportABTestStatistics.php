@@ -13,9 +13,11 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->reportABTestStatistics($ab_definition);
+		$ab_definition_id = 4;
+		$output = $whatcounts->reportABTestStatistics($ab_definition_id);
+
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			!Kint::dump($output);
 		} else {
 			var_dump($output);
 		}

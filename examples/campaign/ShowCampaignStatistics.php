@@ -13,17 +13,20 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->showCampaignStatistics();
+		$campaign_statistics = new ZayconWhatCounts\Report();
+		$campaign_statistics->setCampaignId(43);
+
+		$whatcounts->showCampaignStatistics($campaign_statistics);
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			!Kint::dump($campaign_statistics);
 		} else {
-			var_dump($output);
+			var_dump($campaign_statistics);
 		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )
 	{
 		if (class_exists('Kint')) {
-			Kint::dump($e);
+			!Kint::dump($e);
 		} else {
 			var_dump($e);
 		}

@@ -13,7 +13,9 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->deleteArticle($article);
+		$article_name = 'article-1-copy';
+
+		$output = $whatcounts->deleteArticle($article_name);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

@@ -13,9 +13,11 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->showMultipleCampaginStatistics();
+		$campaign_ids = array(43,7);
+
+		$output = $whatcounts->showMultipleCampaginStatistics($campaign_ids);
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			!Kint::dump($output);
 		} else {
 			var_dump($output);
 		}
@@ -23,7 +25,7 @@
 	catch ( ZayconWhatCounts\Exception $e )
 	{
 		if (class_exists('Kint')) {
-			Kint::dump($e);
+			!Kint::dump($e);
 		} else {
 			var_dump($e);
 		}

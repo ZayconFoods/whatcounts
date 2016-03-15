@@ -13,17 +13,21 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->deleteSocialProviderById($provider);
+		$social_provider = new ZayconWhatCounts\SocialProvider();
+		$social_provider->setProviderId(522);
+
+		$is_deleted = $whatcounts->deleteSocialProviderById($social_provider);
+
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			!Kint::dump($is_deleted);
 		} else {
-			var_dump($output);
+			var_dump($is_deleted);
 		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )
 	{
 		if (class_exists('Kint')) {
-			Kint::dump($e);
+			!Kint::dump($e);
 		} else {
 			var_dump($e);
 		}

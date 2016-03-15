@@ -16,6 +16,7 @@ class Report
 	private $event_id;
 	private $list_name;
 	private $list_id;
+	private $task_id;
 	private $event_date;
 	private $first_name;
 	private $last_name;
@@ -43,10 +44,12 @@ class Report
 	private $soft_bounces;
 	private $unsubscribes;
 	private $display_message_count;
+	private $total_sent;
 	private $total_opened;
 	private $total_clicks;
 	private $total_ftafs;
 	private $total_opened_unique;
+	private $total_clicks_unique;
 	private $complaint_bounces;
 	private $blocked_bounces;
 	private $social_shares;
@@ -174,6 +177,26 @@ class Report
 	public function setListId($list_id)
 	{
 		$this->list_id = $list_id;
+
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getTaskId()
+	{
+		return $this->task_id;
+	}
+
+	/**
+	 * @param mixed $task_id
+	 *
+	 * @return Report
+	 */
+	public function setTaskId($task_id)
+	{
+		$this->task_id = $task_id;
 
 		return $this;
 	}
@@ -721,6 +744,26 @@ class Report
 	/**
 	 * @return mixed
 	 */
+	public function getTotalSent()
+	{
+		return $this->total_sent;
+	}
+
+	/**
+	 * @param mixed $total_sent
+	 *
+	 * @return Report
+	 */
+	public function setTotalSent($total_sent)
+	{
+		$this->total_sent = $total_sent;
+
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
 	public function getTotalOpened()
 	{
 		return $this->total_opened;
@@ -794,6 +837,26 @@ class Report
 	public function setTotalOpenedUnique($total_opened_unique)
 	{
 		$this->total_opened_unique = $total_opened_unique;
+
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getTotalClicksUnique()
+	{
+		return $this->total_clicks_unique;
+	}
+
+	/**
+	 * @param mixed $total_clicks_unique
+	 *
+	 * @return Report
+	 */
+	public function setTotalClicksUnique($total_clicks_unique)
+	{
+		$this->total_clicks_unique = $total_clicks_unique;
 
 		return $this;
 	}

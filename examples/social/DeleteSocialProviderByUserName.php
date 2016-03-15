@@ -13,9 +13,15 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->deleteSocialProviderByUserName($provider);
+		$social_provider = new ZayconWhatCounts\SocialProvider();
+		$social_provider
+			->setUsername('Mark Simonds')
+			->setProviderName('linkedin');
+
+		$is_deleted = $whatcounts->deleteSocialProviderByUserName($social_provider);
+
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			!Kint::dump($is_deleted);
 		} else {
 			var_dump($output);
 		}
@@ -23,7 +29,7 @@
 	catch ( ZayconWhatCounts\Exception $e )
 	{
 		if (class_exists('Kint')) {
-			Kint::dump($e);
+			!Kint::dump($e);
 		} else {
 			var_dump($e);
 		}

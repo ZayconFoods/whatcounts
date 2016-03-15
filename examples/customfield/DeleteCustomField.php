@@ -13,6 +13,10 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
+		$custom_field = new ZayconWhatCounts\Field();
+		$custom_field
+			->setName('custom-number');
+
 		$output = $whatcounts->deleteCustomField($custom_field);
 		if (class_exists('Kint')) {
 			Kint::dump($output);

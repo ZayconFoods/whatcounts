@@ -13,7 +13,7 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->getTemplateById($template);
+		$output = $whatcounts->getTemplateById(14);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

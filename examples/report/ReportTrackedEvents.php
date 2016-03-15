@@ -8,14 +8,99 @@
 
 	require_once('../config.php');
 
+	define('EVENT_TYPE_NONE', 0);
+	define('EVENT_TYPE_SENT', 9);
+	define('EVENT_TYPE_OPEN', 10);
+	define('EVENT_TYPE_CLICKTHROUGH', 11);
+	define('EVENT_TYPE_SNA_SHARING', 13);
+	define('EVENT_TYPE_SUBSCRIBE', 20);
+	define('EVENT_TYPE_UNSUBSCRIBE', 21);
+	define('EVENT_TYPE_GLOBAL_UNSUBSCRIBE', 22);
+	define('EVENT_TYPE_UNIVERSAL_UNSUBSCRIBE', 23);
+	define('EVENT_TYPE_SOFT_BOUNCE', 30);
+	define('EVENT_TYPE_HARD_BOUNCE', 31);
+	define('EVENT_TYPE_DATA_SET', 32);
+	define('EVENT_TYPE_CONFIRMATION MESSAGE', 33);
+	define('EVENT_TYPE_ABUSE', 34);
+	define('EVENT_TYPE_INVALID_EMAIL_ADDRESS', 35);
+	define('EVENT_TYPE_BLOCKED', 36);
+	define('EVENT_TYPE_DISPLAY_MSG', 40);
+	define('EVENT_TYPE_SNA_DISPLAY_MESSAGE', 41);
+	define('EVENT_TYPE_VIDEO_DISPLAY_MSG', 42);
+	define('EVENT_TYPE_MOBILE_DISPLAY_MSG', 43);
+	define('EVENT_TYPE_FTAF', 50);
+	define('EVENT_TYPE_FTAF_ANON', 51);
+	define('EVENT_TYPE_USER_LOGIN', 60);
+	define('EVENT_TYPE_USER_LOGOUT', 61);
+	define('EVENT_TYPE_USER_PASSWORD_CHANGE', 62);
+	define('EVENT_TYPE_SENDMESSAGE', 70);
+	define('EVENT_TYPE_SNA_POST_MESSAGE', 71);
+	define('EVENT_TYPE_SENDMESSAGE_CC', 72);
+	define('EVENT_TYPE_CONVERSION_DEEPLINK_TRACKING', 80);
+	define('EVENT_TYPE_CLICK_PREF_UNSUB', 81);
+	define('EVENT_TYPE_CLICK_PREF_MANAGER', 82);
+	define('EVENT_TYPE_CLICK_PREF_SUB', 83);
+	define('EVENT_TYPE_RSS_VISIT', 102);
+	define('EVENT_TYPE_SUPPRESS', 103);
+	define('EVENT_TYPE_ANALYTICS_ABANDONMENT', 121);
+	define('EVENT_TYPE_ANALYTICS_PURCHASES', 122);
+	define('EVENT_TYPE_ANALYTICS_VIEWS', 123);
+	define('EVENT_TYPE_VIDEO_LOADED', 130);
+	define('EVENT_TYPE_VIDEO_PLAYED', 131);
+	define('EVENT_TYPE_VIDEO_PAUSED', 132);
+	define('EVENT_TYPE_VIDEO_STOPPED', 133);
+	define('EVENT_TYPE_VIDEO_INTERRUPTED', 134);
+	define('EVENT_TYPE_VIDEO_CHECK_POINT_25', 135);
+	define('EVENT_TYPE_VIDEO_CHECK_POINT_50', 136);
+	define('EVENT_TYPE_VIDEO_CHECK_POINT_75', 137);
+	define('EVENT_TYPE_VIDEO_COMPLETED', 138);
+	define('EVENT_TYPE_SNA_DIGG_VIEW', 151);
+	define('EVENT_TYPE_SNA_DIGG_SHARE', 152);
+	define('EVENT_TYPE_SNA_FACEBOOK_VIEW', 153);
+	define('EVENT_TYPE_SNA_FACEBOOK_SHARE', 154);
+	define('EVENT_TYPE_SNA_LINKEDIN_VIEW', 155);
+	define('EVENT_TYPE_SNA_LINKEDIN_SHARE', 156);
+	define('EVENT_TYPE_SNA_MYSPACE_VIEW', 157);
+	define('EVENT_TYPE_SNA_MYSPACE_SHARE', 158);
+	define('EVENT_TYPE_SNA_PING_VIEW', 159);
+	define('EVENT_TYPE_SNA_PING_SHARE', 160);
+	define('EVENT_TYPE_SNA_TWITTER_VIEW', 161);
+	define('EVENT_TYPE_SNA_TWITTER_SHARE', 162);
+	define('EVENT_TYPE_SNA_GOOGLEPLUS_VIEW', 163);
+	define('EVENT_TYPE_SNA_GOOGLEPLUS_SHARE', 164);
+	define('EVENT_TYPE_SNA_STUMBLEUPON_VIEW', 165);
+	define('EVENT_TYPE_SNA_STUMBLEUPON_SHARE', 166);
+	define('EVENT_TYPE_SNA_PINTEREST_VIEW', 167);
+	define('EVENT_TYPE_SNA_PINTEREST_SHARE', 168);
+	define('EVENT_TYPE_SOFT_BOUNCE_UNSUBSCRIBE', 230);
+	define('EVENT_TYPE_SNA_DIGG_CLICKTHROUGH', 301);
+	define('EVENT_TYPE_SNA_FACEBOOK_CLICKTHROUGH', 302);
+	define('EVENT_TYPE_SNA_LINKEDIN_CLICKTHROUGH', 303);
+	define('EVENT_TYPE_SNA_MYSPACE_CLICKTHROUGH', 304);
+	define('EVENT_TYPE_SNA_PING_CLICKTHROUGH', 305);
+	define('EVENT_TYPE_SNA_TWITTER_CLICKTHROUGH', 306);
+	define('EVENT_TYPE_SNA_GOOGLEPLUS_CLICKTHROUGH', 307);
+	define('EVENT_TYPE_SNA_STUMBLEUPON_CLICKTHROUGH', 308);
+	define('EVENT_TYPE_SNA_PINTEREST_CLICKTHROUGH', 309);
+	define('EVENT_TYPE_SNA_FACEBOOK_POST', 401);
+	define('EVENT_TYPE_SNA_LINKEDIN_POST', 402);
+	define('EVENT_TYPE_SNA_TWITTER_POST', 403);
+	define('EVENT_TYPE_PROFILE_MANAGER', 999999);
+
+
 	try
 	{
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->reportTrackedEvents();
+		$event_type = EVENT_TYPE_CLICKTHROUGH;
+		$start_datetime = '02/01/2016 13:00:00';
+		$end_datetime = '03/01/2016 13:00:00';
+		$offset = 0;
+
+		$output = $whatcounts->reportTrackedEvents($event_type, $start_datetime, $end_datetime, $offset);
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			!Kint::dump($output);
 		} else {
 			var_dump($output);
 		}
@@ -23,7 +108,7 @@
 	catch ( ZayconWhatCounts\Exception $e )
 	{
 		if (class_exists('Kint')) {
-			Kint::dump($e);
+			!Kint::dump($e);
 		} else {
 			var_dump($e);
 		}

@@ -13,7 +13,11 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->testSegmentationRule($rule);
+		$segmentation_rule = new ZayconWhatCounts\SegmentationRule();
+		$segmentation_rule->setId(8);
+		$segmentation_rule->setListId(14);
+
+		$output = $whatcounts->testSegmentationRule($segmentation_rule);
 		if (class_exists('Kint')) {
 			Kint::dump($output);
 		} else {

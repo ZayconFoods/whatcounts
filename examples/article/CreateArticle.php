@@ -13,11 +13,25 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->createArticle($article);
+		$article = new ZayconWhatCounts\Article();
+		$article
+			->setName('test')
+			->setTitle('Test Article Title')
+			->setDescription('Test Article Description')
+			->setDeck('This is the actual article deck.')
+			->setCallout('Test Article Callout')
+			->setBody('Test Article Body')
+			->setAuthorName('Mark Simonds')
+			->setAuthorBio('This is the bio for Mark Simonds')
+			->setAuthorEmail('mark@zayconfresh.com')
+			->setFolderId(0);
+
+		$whatcounts->createArticle($article);
+
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			Kint::dump($article);
 		} else {
-			var_dump($output);
+			var_dump($article);
 		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )

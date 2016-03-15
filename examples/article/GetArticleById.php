@@ -13,11 +13,15 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$output = $whatcounts->getArticleById($article);
+		$article = new ZayconWhatCounts\Article();
+		$article->setId(5);
+
+		$whatcounts->getArticleById($article);
+
 		if (class_exists('Kint')) {
-			Kint::dump($output);
+			Kint::dump($article);
 		} else {
-			var_dump($output);
+			var_dump($article);
 		}
 	}
 	catch ( ZayconWhatCounts\Exception $e )

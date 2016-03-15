@@ -14,18 +14,24 @@ class Campaign
     private $list_id;
     private $template_id;
     private $format;
+    private $subject;
     private $segmentation_id;
     private $seed_list_id;
     private $supression_list;
     private $data_macro_id;
     private $alias;
     private $limit;
+    private $vmta;
+    private $ab_definition_id;
+    private $deployed_by_email;
 
     // Boolean values
     private $rss;
     private $seed_delivery;
     private $send_notification;
     private $no_end_date;
+    private $return_task_id;
+    private $task_id;
 
     private $start_month;
     private $start_day;
@@ -110,6 +116,26 @@ class Campaign
     public function setFormat($format)
     {
         $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @param mixed $subject
+     *
+     * @return Campaign
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+
         return $this;
     }
 
@@ -218,6 +244,106 @@ class Campaign
     public function setLimit($limit)
     {
         $this->limit = $limit;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVmta()
+    {
+        return $this->vmta;
+    }
+
+    /**
+     * @param mixed $vmta
+     *
+     * @return Campaign
+     */
+    public function setVmta($vmta)
+    {
+        $this->vmta = $vmta;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAbDefinitionId()
+    {
+        return $this->ab_definition_id;
+    }
+
+    /**
+     * @param mixed $ab_definition_id
+     *
+     * @return Campaign
+     */
+    public function setAbDefinitionId($ab_definition_id)
+    {
+        $this->ab_definition_id = $ab_definition_id;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDeployedByEmail()
+    {
+        return $this->deployed_by_email;
+    }
+
+    /**
+     * @param mixed $deployed_by_email
+     *
+     * @return Campaign
+     */
+    public function setDeployedByEmail($deployed_by_email)
+    {
+        $this->deployed_by_email = $deployed_by_email;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReturnTaskId()
+    {
+        return $this->return_task_id;
+    }
+
+    /**
+     * @param mixed $return_task_id
+     *
+     * @return Campaign
+     */
+    public function setReturnTaskId($return_task_id)
+    {
+        $this->return_task_id = $return_task_id;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTaskId()
+    {
+        return $this->task_id;
+    }
+
+    /**
+     * @param mixed $task_id
+     *
+     * @return Campaign
+     */
+    public function setTaskId($task_id)
+    {
+        $this->task_id = $task_id;
+
         return $this;
     }
 
