@@ -192,6 +192,16 @@
 
 					return $result;
 				}
+				$tidy_config = array(
+					'indent'     => true,
+					'input-xml'  => true,
+					'output-xml' => true,
+					'wrap'       => false);
+
+				$tidy = new \tidy();
+				$tidy->parseString($body, $tidy_config);
+				$tidy->cleanRepair();
+				$body = $tidy;
 
 				if ((int)substr_compare($body, "<data>", 0, 6, 1) == 0) return new \SimpleXMLElement($body);
 				if ((int)substr_compare($body, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>", 0, 38, 1) == 0) return new \SimpleXMLElement($body);
