@@ -577,6 +577,24 @@
 		/**
 		 * @param $subscriber_id
 		 *
+		 * @return SimpleXMLElement
+		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969659
+		 */
+		public function showSubscriberXML($subscriber_id)
+		{
+			$form_data = array(
+				'subscriber_id' => $subscriber_id
+			);
+			$xml = $this->call('detail', $form_data);
+			$subscriber_data = $xml->subscriber;
+			return $subscriber_data;
+		}
+
+		/**
+		 * @param $subscriber_id
+		 *
 		 * @return Subscriber
 		 * @throws Exception
 		 *
