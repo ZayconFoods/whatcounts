@@ -192,6 +192,16 @@
 
 					return $result;
 				}
+				$tidy_config = array(
+					'indent'     => true,
+					'input-xml'  => true,
+					'output-xml' => true,
+					'wrap'       => false);
+
+				$tidy = new \tidy();
+				$tidy->parseString($body, $tidy_config);
+				$tidy->cleanRepair();
+				$body = $tidy;
 
 				if ((int)substr_compare($body, "<data>", 0, 6, 1) == 0) return new \SimpleXMLElement($body);
 				if ((int)substr_compare($body, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>", 0, 38, 1) == 0) return new \SimpleXMLElement($body);
@@ -562,6 +572,24 @@
 			$xml = $this->call('delete', $form_data);
 
 			return trim($xml[1]);
+		}
+
+		/**
+		 * @param $subscriber_id
+		 *
+		 * @return SimpleXMLElement
+		 * @throws Exception
+		 *
+		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969659
+		 */
+		public function showSubscriberXML($subscriber_id)
+		{
+			$form_data = array(
+				'subscriber_id' => $subscriber_id
+			);
+			$xml = $this->call('detail', $form_data);
+			$subscriber_data = $xml->subscriber;
+			return $subscriber_data;
 		}
 
 		/**
